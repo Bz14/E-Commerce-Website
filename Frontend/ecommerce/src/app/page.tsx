@@ -1,9 +1,11 @@
-import Image from "next/image";
+import HeroSection from "./Components/home_page/hero_section";
 
-const Home = ()=>{
-  return(
-    <h1>Hello World</h1>
-  )
-}
+const Home = () => {
+  return (
+    <>
+      <HeroSection />
+    </>
+  );
+};
 
 export default Home;
