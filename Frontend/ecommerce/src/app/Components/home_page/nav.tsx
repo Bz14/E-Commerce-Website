@@ -102,37 +102,49 @@ const NavBar = () => {
           </div>
         </div>
       </div>
-      <div className={`md:hidden ${isOpen ? "block" : "hidden"}`}>
+      <div
+        className={`md:hidden ${isOpen ? "block" : "hidden"} text-primaryDark`}
+      >
         <Link href="/" className="block py-2 px-4 text-sm hover:bg-gray-200">
           Home
+          {path === "/" && <hr className="border-b-2 border-primaryBrown" />}
         </Link>
         <Link
           href="/about"
           className="block py-2 px-4 text-sm hover:bg-gray-200"
         >
           About
+          {path === "/about" && (
+            <hr className="border-b-2 border-primaryBrown" />
+          )}
         </Link>
         <Link
           href="/services"
           className="block py-2 px-4 text-sm hover:bg-gray-200"
         >
           Services
+          {path === "/services" && (
+            <hr className="border-b-2 border-primaryBrown" />
+          )}
         </Link>
         <Link
           href="/contact"
           className="block py-2 px-4 text-sm hover:bg-gray-200"
         >
           Contact
+          {path === "/contact" && (
+            <hr className="border-b-2 border-primaryBrown" />
+          )}
         </Link>
         <Link
           href="/login"
-          className="block py-2 px-4 text-sm hover:bg-gray-200"
+          className="py-2 px-4 bg-primaryDark rounded-full text-white font-semibold hover:bg-gray-400 transition duration-300"
         >
           Login
         </Link>
         <Link
           href="/signup"
-          className="block py-2 px-4 text-sm hover:bg-gray-200"
+          className="py-2 px-4 text-gray-500 bg-primaryBrown rounded-full text-white font-semibold hover:bg-primaryHover transition duration-300"
         >
           Sign Up
         </Link>
