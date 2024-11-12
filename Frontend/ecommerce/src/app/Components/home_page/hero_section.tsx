@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import heroImage from "@assets/image0_0-removebg-preview (1).png";
+import heroImage from "@assets/img.png";
 
 const HeroSection = () => {
   return (
