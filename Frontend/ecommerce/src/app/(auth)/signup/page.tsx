@@ -1,8 +1,14 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignUp = () => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
+    useState(false);
   return (
     <div className="min-h-screen flex items-center justify-center text-primaryDark bg-white md:bg-primaryBrown">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md mt-10">
@@ -34,35 +40,60 @@ const SignUp = () => {
               placeholder="Enter your email"
             />
           </div>
-          <div className="mb-6">
+          <div className="mb-6 relative">
             <label className="block text-sm font-bold mb-2" htmlFor="password">
               Password
             </label>
             <input
-              type="password"
+              type={isPasswordVisible ? "text" : "password"}
               id="password"
               aria-label="Password"
               autoComplete="new-password"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               placeholder="Enter your password"
             />
+            <button
+              type="button"
+              onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+              className="absolute inset-y-0 right-3 flex items-center text-gray-600 hover:text-gray-800 focus:outline-none mt-7"
+            >
+              {isPasswordVisible ? (
+                <FaEye size={20} />
+              ) : (
+                <FaEyeSlash size={20} />
+              )}
+            </button>
           </div>
-          <div className="mb-6">
+          <div className="mb-6 relative">
             <label
               className="block text-sm font-bold mb-2"
-              htmlFor="confirmPassword"
+              htmlFor="confirm password"
             >
               Confirm Password
             </label>
             <input
-              type="password"
-              id="confirmPassword"
-              aria-label="Confirm Password"
+              type={isConfirmPasswordVisible ? "text" : "password"}
+              id="password"
+              aria-label="Password"
               autoComplete="new-password"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="Confirm your password"
+              placeholder="Enter your password"
             />
+            <button
+              type="button"
+              onClick={() =>
+                setIsConfirmPasswordVisible(!isConfirmPasswordVisible)
+              }
+              className="absolute inset-y-0 right-3 flex items-center text-gray-600 hover:text-gray-800 focus:outline-none mt-7"
+            >
+              {isConfirmPasswordVisible ? (
+                <FaEye size={20} />
+              ) : (
+                <FaEyeSlash size={20} />
+              )}
+            </button>
           </div>
+
           <div className="mb-4 text-center">
             Already have an account?{" "}
             <Link href="/login" className="text-primaryBrown hover:underline">
