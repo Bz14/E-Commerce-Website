@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
-import logo from "../../../../public/assets/logo (3).png";
+import logo from "@assets/logo (3).png";
 import { usePathname } from "next/navigation";
 import { FaCartShopping } from "react-icons/fa6";
 

@@ -15,21 +15,21 @@ type Product = {
 
 const featured: Product[] = [
   {
-    id: 1,
-    name: "Nike Air Force 1 '07",
-    description: "A classic sneaker for everyday wear.",
-    image: img1,
-  },
-  {
     id: 2,
-    name: "Nike Air Force 1 '07",
-    description: "A classic sneaker for everyday wear.",
+    name: "Mini dress.",
+    description: "A classic mini ware dress.",
     image: img2,
   },
   {
+    id: 1,
+    name: "Short sleeve dress.",
+    description: "A colorful long dress. A colorful long dress.",
+    image: img1,
+  },
+  {
     id: 3,
-    name: "Nike Air Force 1 '07",
-    description: "A classic sneaker for everyday wear.",
+    name: "Bridal dress.",
+    description: "A long bridal dress.",
     image: img3,
   },
 ];
@@ -41,7 +41,7 @@ const Featured = () => {
         <h2 className="text-3xl font-bold text-center mb-8">
           Featured Products
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="flex flex-col md:flex-row align-middle items-center md:justify-between space-y-10 md:space-x-10 align-center flex-wrap">
           {featured.map((product) => (
             <FeaturedCard key={product.id} product={product} />
           ))}
