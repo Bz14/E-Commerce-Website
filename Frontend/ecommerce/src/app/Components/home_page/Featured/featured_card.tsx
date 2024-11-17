@@ -14,7 +14,7 @@ const FeaturedCard = ({ product }: { product: Product }) => {
   return (
     <div>
       <motion.div
-        className="bg-primaryDark p-6 rounded-lg shadow-lg md:w-72 w-96"
+        className="bg-primaryDark p-6 rounded-lg shadow-lg md:w-72 w-fit"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
@@ -24,16 +24,18 @@ const FeaturedCard = ({ product }: { product: Product }) => {
             alt="Featured Product"
             layout="fill"
             objectFit="cover"
-            className="rounded-lg"
+            className="rounded-lg object-cover"
           />
         </div>
         <h3 className="text-xl text-white font-semibold mb-2 mt-2">
           {product.name}
         </h3>
         <p className="text-white mb-4">{product.description}</p>
-        <button className="px-4 py-2 bg-primaryBrown text-white font-semibold rounded-lg shadow-md hover:bg-primaryHover transition duration-300 ">
-          Check Now
-        </button>
+        <div className="flex justify-end">
+          <button className="px-4 py-2 bg-primaryBrown text-white font-semibold rounded-lg shadow-md hover:bg-primaryHover transition duration-300">
+            Check Now
+          </button>
+        </div>
       </motion.div>
     </div>
   );
