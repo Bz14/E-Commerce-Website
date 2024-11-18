@@ -19,12 +19,20 @@ class Password {
     return re.test(password);
   }
   async HashPassword() {
-    const hashedPassword = await bcrypt.hash(this.password, 10);
-    return hashedPassword;
+    try {
+      const hashedPassword = await bcrypt.hash(this.password, 10);
+      return hashedPassword;
+    } catch (error) {
+      throw error;
+    }
   }
   async ComparePassword(hash) {
-    const isMatch = await bcrypt.compare(this.password, hash);
-    return isMatch;
+    try {
+      const isMatch = await bcrypt.compare(this.password, hash);
+      return isMatch;
+    } catch (error) {
+      throw error;
+    }
   }
   toString() {
     return this.password;
