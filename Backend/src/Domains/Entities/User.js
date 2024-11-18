@@ -1,6 +1,9 @@
 const { ObjectId } = require("mongodb");
+const Email = require("../Value-objects/email");
+const Password = require("../Value-objects/password");
 class User {
   constructor(
+    name,
     email,
     password,
     isVerified = false,
@@ -10,6 +13,7 @@ class User {
     createdAt = null
   ) {
     this.id = new ObjectId();
+    this.name = name;
     this.email = new Email(email);
     this.password = new Password(password);
     this.isVerified = isVerified;

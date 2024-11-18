@@ -3,9 +3,6 @@ class Name {
     if (!name) {
       throw new Error("Name is required");
     }
-    if (typeof name !== "string") {
-      throw new Error("Name must be a string");
-    }
     const validateError = this.validate(name);
     if (validateError) {
       throw new Error(validateError);

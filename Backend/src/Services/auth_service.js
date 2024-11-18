@@ -10,8 +10,8 @@ class AuthService {
   async Signup(name, email, password) {
     let user;
     try {
-      user = new User({ name, email, password });
-      const hashedPassword = await password.HashPassword();
+      user = new User(name, email, password);
+      const hashedPassword = await user.password.HashPassword();
       user.password = hashedPassword;
     } catch (error) {
       throw error;
@@ -24,10 +24,8 @@ class AuthService {
       }
       throw new Error("User already signed up. Please verify your email.");
     }
-    const session = await this.authRepo.startSession();
     try {
-      session.startTransaction();
-      await this.authRepo.CreateUser(user, { session });
+      await this.authRepo.CreateUser(user);
       const verificationToken =
         await this.verificationService.GenerateVerificationToken();
       user.token = verificationToken;
@@ -43,10 +41,9 @@ class AuthService {
         "Email Verification",
         verificationEmail
       );
-      await session.commitTransaction();
     } catch (error) {
       console.log("Error", error);
-      await session.abortTransaction();
+      this.authRepo.DeleteUser(email);
       throw error;
     }
   }
