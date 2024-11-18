@@ -8,6 +8,8 @@ import { useForm, FieldErrors } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useEffect } from "react";
+import Spinner from "@/app/Components/UI/spinner";
+import { useRouter } from "next/navigation";
 
 type SignUpForm = {
   name: string;
@@ -63,6 +65,8 @@ const SignUp = () => {
   const { register, handleSubmit, formState, reset } = form;
   const { errors, isValid, isDirty, isSubmitting, isSubmitSuccessful } =
     formState;
+  const apiUrl = process.env.API_URL;
+  const router = useRouter();
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -72,15 +76,40 @@ const SignUp = () => {
   const onError = (errors: FieldErrors) => {
     console.log(errors);
   };
-  const onSubmit = () => {
-    console.log("submit");
+  const onSubmit = async (data: SignUpForm) => {
+    console.log(data, "clicked");
+    console.log(`${apiUrl}/auth/signup`);
+    setLoading(true);
+    try {
+      const response = await fetch(`${apiUrl}/auth/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) {
+        const data = await response.json();
+        setError(
+          data.message || "An error occurred while creating your account."
+        );
+        return;
+      }
+      // reset();
+      router.push(`/verify?email=${encodeURIComponent(data.email)}`);
+    } catch (error) {
+      setError("Something went wrong");
+      console.log("Error", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center text-primaryDark bg-white md:bg-primaryBrown">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md mt-10">
         <h1 className="text-2xl font-bold mb-6 text-center">Sign Up</h1>
-        <form onSubmit={handleSubmit(onSubmit, onError)}>
+        <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
           <div className="mb-4">
             <label className="block text-sm font-bold mb-2" htmlFor="name">
               Name
