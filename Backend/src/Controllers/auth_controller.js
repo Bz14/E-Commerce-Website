@@ -1,10 +1,19 @@
 const AuthService = require("../Services/auth_service");
 const AuthRepository = require("../Infrastructure/auth_repository");
+const EmailService = require("../Services/email_service");
+const VerificationService = require("../Services/verification_service");
 
 const authRepo = new AuthRepository();
-const authService = new AuthService(authRepo);
+const emailService = new EmailService();
+const verificationService = new VerificationService();
 
-const Signup = async (req, res) => {
+const authService = new AuthService(
+  authRepo,
+  emailService,
+  verificationService
+);
+
+const SignupController = async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
@@ -15,4 +24,4 @@ const Signup = async (req, res) => {
   }
 };
 
-module.exports = { Signup };
+module.exports = { SignupController };
