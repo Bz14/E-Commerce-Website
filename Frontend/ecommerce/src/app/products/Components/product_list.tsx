@@ -8,6 +8,8 @@ import shoe5 from "@assets/shoe/shoe7.png";
 import shoe6 from "@assets/shoe/shoe6.png";
 import shoe7 from "@assets/shoe/shoe1.png";
 import shoe8 from "@assets/shoe/shoe3.png";
+import { useState } from "react";
+import Pagination from "./pagination";
 
 const ProductList = () => {
   const products = [
@@ -77,13 +79,31 @@ const ProductList = () => {
     },
   ];
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
+  const currentItems = products.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(products.length / itemsPerPage);
+
+  const next = () => {
+    setCurrentPage((currentPage) => Math.min(currentPage + 1, totalPages));
+  };
+
+  const prev = () => {
+    setCurrentPage((currentPage) => Math.max(currentPage - 1, 1));
+  };
+
   return (
     <div className="p-8">
-      <h2 className="text-3xl font-bold text-center mb-6">
-        Special Shoes With Offers
+      <h2 className="text-3xl text-primaryDark font-bold text-center mb-6">
+        Shoes for Men and Women
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
+        {currentItems.map((product) => (
           <ProductCard
             key={product.id}
             id={product.id}
@@ -95,6 +115,12 @@ const ProductList = () => {
           />
         ))}
       </div>
+      <Pagination
+        goToNextPage={next}
+        goToPreviousPage={prev}
+        totalPages={totalPages}
+        currentPage={currentPage}
+      />
     </div>
   );
 };
