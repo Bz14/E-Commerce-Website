@@ -39,11 +39,11 @@ const NavBar = () => {
               )}
             </Link>
             <Link
-              href="/services"
+              href="/products"
               className="py-4 px-2 font-semibold hover:text-primaryHover transition duration-300"
             >
-              Services
-              {path === "/services" && (
+              Products
+              {path === "/products" && (
                 <hr className="border-b-2 border-primaryBrown" />
               )}
             </Link>
@@ -66,7 +66,7 @@ const NavBar = () => {
             </Link>
             <Link
               href="/signup"
-              className="py-2 px-4 text-gray-500 bg-primaryBrown rounded-full text-white font-semibold hover:bg-primaryHover transition duration-300"
+              className="py-2 px-4  bg-primaryBrown rounded-full text-white font-semibold hover:bg-primaryHover transition duration-300"
             >
               Sign Up
             </Link>
