@@ -11,15 +11,12 @@ import { useEffect } from "react";
 import Spinner from "@/app/Components/UI/spinner";
 import { useRouter } from "next/navigation";
 
-type SignUpForm = {
-  name: string;
+type LoginForm = {
   email: string;
   password: string;
-  confirmPassword: string;
 };
 
 const schema = yup.object({
-  name: yup.string().required("Full name is required."),
   email: yup
     .string()
     .required("Email is required.")
@@ -41,21 +38,14 @@ const schema = yup.object({
       /(?=.*[@$!%*?&])/,
       "Password must contain at least one special character."
     ),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref("password"), undefined], "Passwords must match.")
-    .required("Please confirm your password."),
 });
 const Login = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
-    useState(false);
-  const form = useForm<SignUpForm>({
+  useState(false);
+  const form = useForm<LoginForm>({
     defaultValues: {
-      name: "",
       email: "",
       password: "",
-      confirmPassword: "",
     },
     mode: "all",
     resolver: yupResolver(schema),
@@ -76,32 +66,32 @@ const Login = () => {
   const onError = (errors: FieldErrors) => {
     console.log(errors);
   };
-  const onSubmit = async (data: SignUpForm) => {
-    setLoading(true);
-    try {
-      const response = await fetch(`${apiUrl}/auth/signup`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      console.log(response);
-      if (!response.ok) {
-        const data = await response.json();
-        setError(
-          data.message || "An error occurred while creating your account."
-        );
-        return;
-      }
-      reset();
-      router.push(`/verify?email=${encodeURIComponent(data.email)}`);
-    } catch (error) {
-      setError("Something went wrong");
-      console.log("Error", error);
-    } finally {
-      setLoading(false);
-    }
+  const onSubmit = async (data: LoginForm) => {
+    // setLoading(true);
+    // try {
+    //   const response = await fetch(`${apiUrl}/auth/signup`, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(data),
+    //   });
+    //   console.log(response);
+    //   if (!response.ok) {
+    //     const data = await response.json();
+    //     setError(
+    //       data.message || "An error occurred while creating your account."
+    //     );
+    //     return;
+    //   }
+    //   reset();
+    //   router.push(`/verify?email=${encodeURIComponent(data.email)}`);
+    // } catch (error) {
+    //   setError("Something went wrong");
+    //   console.log("Error", error);
+    // } finally {
+    //   setLoading(false);
+    // }
   };
 
   return (
