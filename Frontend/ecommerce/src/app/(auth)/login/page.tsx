@@ -46,7 +46,7 @@ const schema = yup.object({
     .oneOf([yup.ref("password"), undefined], "Passwords must match.")
     .required("Please confirm your password."),
 });
-const SignUp = () => {
+const Login = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
     useState(false);
@@ -106,26 +106,9 @@ const SignUp = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center text-primaryDark bg-primaryBrown">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md mt-10">
-        <h1 className="text-2xl font-bold mb-6 text-center">Sign Up</h1>
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
         <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
-          <div className="mb-4">
-            <label className="block text-sm font-bold mb-2" htmlFor="name">
-              Name
-            </label>
-            <input
-              {...register("name")}
-              type="text"
-              id="name"
-              aria-label="Name"
-              autoComplete="name"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="Enter your name"
-            />
-            <p style={{ color: "red", fontSize: "12px" }}>
-              {errors.name?.message}
-            </p>
-          </div>
           <div className="mb-4">
             <label className="block text-sm font-bold mb-2" htmlFor="email">
               Email
@@ -171,44 +154,10 @@ const SignUp = () => {
               {errors.password?.message}
             </p>
           </div>
-          <div className="mb-6 relative">
-            <label
-              className="block text-sm font-bold mb-2"
-              htmlFor="confirm password"
-            >
-              Confirm Password
-            </label>
-            <input
-              {...register("confirmPassword")}
-              type={isConfirmPasswordVisible ? "text" : "password"}
-              id="password"
-              aria-label="Password"
-              autoComplete="new-password"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="Enter your password"
-            />
-            <button
-              type="button"
-              onClick={() =>
-                setIsConfirmPasswordVisible(!isConfirmPasswordVisible)
-              }
-              className="absolute inset-y-0 right-3 flex items-center text-gray-600 hover:text-gray-800 focus:outline-none mt-7"
-            >
-              {isConfirmPasswordVisible ? (
-                <FaEye size={20} />
-              ) : (
-                <FaEyeSlash size={20} />
-              )}
-            </button>
-            <p style={{ color: "red", fontSize: "12px" }}>
-              {errors.confirmPassword?.message}
-            </p>
-          </div>
-
           <div className="mb-4 text-center">
-            Already have an account?{" "}
-            <Link href="/login" className="text-primaryBrown hover:underline">
-              Login
+            Don&apos;t have an account?{" "}
+            <Link href="/signup" className="text-primaryBrown hover:underline">
+              SignUp
             </Link>
           </div>
           <div>{error && <p style={{ color: "red" }}>{error}</p>}</div>
@@ -218,14 +167,14 @@ const SignUp = () => {
               type="submit"
               className="w-full bg-primaryDark hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
-              {loading ? <Spinner /> : "Sign Up"}
+              {loading ? <Spinner /> : "Login"}
             </button>
             <p className="text-sm">Or</p>
             <button
               type="button"
               className="w-full bg-gray-100 hover:bg-gray-200 text-primaryDark font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center justify-center"
             >
-              <FcGoogle className="mr-2" size={20} /> Sign Up With Google
+              <FcGoogle className="mr-2" size={20} /> Login With Google
             </button>
           </div>
         </form>
@@ -234,4 +183,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Login;
