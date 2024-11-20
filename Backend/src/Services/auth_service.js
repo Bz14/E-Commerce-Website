@@ -66,6 +66,28 @@ class AuthService {
       throw error;
     }
   }
+
+  async Login(email, password) {
+    const user = await this.authRepo.FindUserByEmail(email);
+    if (!user) {
+      throw new Error("User not found.");
+    }
+    if (!user.isVerified) {
+      throw new Error("Email not verified.");
+    }
+    const passwordMatch = await user.password.ComparePassword(password);
+    if (!passwordMatch) {
+      throw new Error("Invalid password.");
+    }
+    const accessToken = await this.verificationService.GenerateAccessToken(
+      user
+    );
+    const refreshToken = await this.verificationService.GenerateRefreshToken(
+      user
+    );
+
+    return { accessToken, refreshToken };
+  }
 }
 
 module.exports = AuthService;

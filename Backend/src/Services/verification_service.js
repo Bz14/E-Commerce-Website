@@ -1,6 +1,8 @@
 const crypto = require("crypto");
 const VerificationEmail = require("../Utils/verification_email");
+const json = require("jsonwebtoken");
 require("dotenv").config();
+
 class Verification {
   constructor() {}
 
@@ -27,6 +29,32 @@ class Verification {
 
   VerificationEmail = (name, verificationLink) => {
     return VerificationEmail(name, verificationLink);
+  };
+
+  GenerateAccessToken = (user) => {
+    return json.sign(
+      {
+        email: user.email,
+        id: user._id,
+      },
+      process.env.ACCESS_TOKEN_SECRET,
+      {
+        expiresIn: "7d",
+      }
+    );
+  };
+
+  GenerateRefreshToken = (user) => {
+    return json.sign(
+      {
+        email: user.email,
+        id: user._id,
+      },
+      process.env.REFRESH_TOKEN_SECRET,
+      {
+        expiresIn: "15m",
+      }
+    );
   };
 }
 

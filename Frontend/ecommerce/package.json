@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
+    "cookie-parser": "^1.4.7",
     "ecommerce": "file:",
     "framer-motion": "^11.11.13",
     "next": "15.0.3",

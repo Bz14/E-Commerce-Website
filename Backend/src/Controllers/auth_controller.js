@@ -39,4 +39,25 @@ const VerifyController = async (req, res) => {
   }
 };
 
-module.exports = { SignupController, VerifyController };
+const LoginController = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const { accessToken, refreshToken } = await authService.Login(
+      email,
+      password
+    );
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      sameSite: "strict",
+      secure: true,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+    res.status(200).json({ accessToken });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ message: err.message });
+  }
+};
+
+module.exports = { SignupController, VerifyController, LoginController };

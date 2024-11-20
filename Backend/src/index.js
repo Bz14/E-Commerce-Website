@@ -1,6 +1,7 @@
 const bodyParser = require("body-parser");
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const app = express();
 const router = express.Router();
 const connectToDb = require("./Config/db");
@@ -13,6 +14,7 @@ const port = process.env.API_PORT || 5000;
 app.use(bodyParser.json());
 app.use(cors());
 app.use(router);
+app.use(cookieParser());
 
 connectToDb();
 
