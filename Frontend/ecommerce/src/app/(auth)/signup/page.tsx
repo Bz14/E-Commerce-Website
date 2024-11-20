@@ -86,7 +86,6 @@ const SignUp = () => {
         },
         body: JSON.stringify(data),
       });
-      console.log(response);
       if (!response.ok) {
         const data = await response.json();
         setError(
