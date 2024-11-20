@@ -27,6 +27,23 @@ class AuthRepository {
       throw error;
     }
   }
+
+  async FindUserByToken(token) {
+    try {
+      const user = await UserModel.findOne({ token });
+      return user;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async VerifyUser(email) {
+    try {
+      await UserModel.updateOne({ email }, { isVerified: true });
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 module.exports = AuthRepository;

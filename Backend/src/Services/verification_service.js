@@ -21,7 +21,7 @@ class Verification {
     }
   }
   GenerateVerificationLink = (token) => {
-    const verificationLink = `${process.env.ServerHost}/api/auth/verify?token=${token}`;
+    const verificationLink = `${process.env.ServerHost}/api/v1/auth/verify?token=${token}`;
     return verificationLink;
   };
 

@@ -25,11 +25,11 @@ class AuthService {
       throw new Error("User already signed up. Please verify your email.");
     }
     try {
-      await this.authRepo.CreateUser(user);
       const verificationToken =
         await this.verificationService.GenerateVerificationToken();
       user.token = verificationToken;
       user.tokenExpires = new Date(Date.now() + 3600000);
+      await this.authRepo.CreateUser(user);
       const verificationLink =
         this.verificationService.GenerateVerificationLink(verificationToken);
       const verificationEmail = this.verificationService.VerificationEmail(
@@ -44,6 +44,25 @@ class AuthService {
     } catch (error) {
       console.log("Error", error);
       this.authRepo.DeleteUser(email);
+      throw error;
+    }
+  }
+
+  async Verify(token) {
+    const user = await this.authRepo.FindUserByToken(token);
+    console.log(user);
+    if (!user) {
+      throw new Error("Invalid or expired token.");
+    }
+    if (user.isVerified) {
+      throw new Error("Email already verified.");
+    }
+    if (user.tokenExpires < new Date()) {
+      throw new Error("Token expired. Please request a resend.");
+    }
+    try {
+      await this.authRepo.VerifyUser(user.email);
+    } catch (error) {
       throw error;
     }
   }
