@@ -75,10 +75,17 @@ class AuthService {
     if (!user.isVerified) {
       throw new Error("Email not verified.");
     }
-    const passwordMatch = await user.password.ComparePassword(password);
-    if (!passwordMatch) {
-      throw new Error("Invalid password.");
+    try {
+      const newUser = new User(user.name, user.email, user.password);
+      const passwordMatch = await newUser.password.ComparePassword(password);
+      console.log(passwordMatch);
+      if (!passwordMatch) {
+        throw new Error("Password does not match.");
+      }
+    } catch (error) {
+      throw error;
     }
+
     const accessToken = await this.verificationService.GenerateAccessToken(
       user
     );

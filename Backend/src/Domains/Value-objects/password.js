@@ -8,9 +8,9 @@ class Password {
     if (typeof password !== "string") {
       throw new Error("Password must be a string");
     }
-    if (!this.ValidatePassword(password)) {
-      throw new Error("Invalid password");
-    }
+    // if (!this.ValidatePassword(password.trim())) {
+    //   throw new Error("Invalid password");
+    // }
     this.password = password;
   }
 
@@ -28,7 +28,7 @@ class Password {
   }
   async ComparePassword(hash) {
     try {
-      const isMatch = await bcrypt.compare(this.password, hash);
+      const isMatch = await bcrypt.compare(hash, this.password);
       return isMatch;
     } catch (error) {
       throw error;

@@ -67,31 +67,29 @@ const Login = () => {
     console.log(errors);
   };
   const onSubmit = async (data: LoginForm) => {
-    // setLoading(true);
-    // try {
-    //   const response = await fetch(`${apiUrl}/auth/signup`, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(data),
-    //   });
-    //   console.log(response);
-    //   if (!response.ok) {
-    //     const data = await response.json();
-    //     setError(
-    //       data.message || "An error occurred while creating your account."
-    //     );
-    //     return;
-    //   }
-    //   reset();
-    //   router.push(`/verify?email=${encodeURIComponent(data.email)}`);
-    // } catch (error) {
-    //   setError("Something went wrong");
-    //   console.log("Error", error);
-    // } finally {
-    //   setLoading(false);
-    // }
+    setLoading(true);
+    try {
+      const response = await fetch(`${apiUrl}/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        setError(result.message || "An error occurred while logging.");
+        return;
+      }
+      console.log(result);
+      reset();
+      router.push("/");
+    } catch (error) {
+      setError("Something went wrong");
+      console.log("Error", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
