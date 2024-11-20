@@ -56,6 +56,14 @@ class Verification {
       }
     );
   };
+
+  VerifyRefreshToken = (token) => {
+    try {
+      return json.verify(token, process.env.REFRESH_TOKEN_SECRET);
+    } catch (error) {
+      throw error;
+    }
+  };
 }
 
 module.exports = Verification;

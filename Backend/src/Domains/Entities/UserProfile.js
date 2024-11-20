@@ -10,3 +10,5 @@ class UserProfile {
     this.address = address;
   }
 }
+
+module.exports = UserProfile;

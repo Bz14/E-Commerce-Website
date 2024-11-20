@@ -14,9 +14,11 @@ class Name {
     if (name.length < 3) {
       throw "Name must be at least 3 characters long";
     }
-    if (length > 100) {
+    if (name.length > 100) {
       throw "Name must be at most 100 characters long";
     }
     return null;
   }
 }
+
+module.exports = Name;

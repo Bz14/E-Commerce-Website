@@ -1,4 +1,5 @@
 const User = require("../Domains/Entities/User");
+const UserProfile = require("../Domains/Entities/UserProfile");
 
 class AuthService {
   constructor(authRepo, emailService, verificationService) {
@@ -78,7 +79,6 @@ class AuthService {
     try {
       const newUser = new User(user.name, user.email, user.password);
       const passwordMatch = await newUser.password.ComparePassword(password);
-      console.log(passwordMatch);
       if (!passwordMatch) {
         throw new Error("Password does not match.");
       }
@@ -93,7 +93,14 @@ class AuthService {
       user
     );
 
-    return { accessToken, refreshToken };
+    const userProfile = new UserProfile(
+      user.name,
+      user.email,
+      user.profile,
+      user.phone,
+      user.address
+    );
+    return { accessToken, refreshToken, userProfile };
   }
 }
 

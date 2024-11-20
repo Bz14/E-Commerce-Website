@@ -4,7 +4,7 @@ import { AuthState } from "@/app/globals";
 
 const initialState: AuthState = {
   accessToken: null,
-  user: null,
+  userProfile: null,
 };
 
 const authSlice = createSlice({
@@ -15,11 +15,11 @@ const authSlice = createSlice({
       state.accessToken = action.payload;
     },
     setUser(state, action) {
-      state.user = action.payload;
+      state.userProfile = action.payload;
     },
     logout(state) {
       state.accessToken = null;
-      state.user = null;
+      state.userProfile = null;
     },
   },
 });

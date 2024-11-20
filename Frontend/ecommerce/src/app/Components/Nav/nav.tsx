@@ -11,8 +11,9 @@ import { RootState } from "@/app/store/index";
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const path = usePathname();
-  const user = useSelector((state: RootState) => state.auth.user);
-  console.log("The user", user);
+  const user = useSelector((state: RootState) => state.auth.userProfile);
+  const token = useSelector((state: RootState) => state.auth.accessToken);
+  console.log("The user", user, token);
 
   return (
     <nav className="bg-white shadow-2xl drop-shadow-lg text-primaryDark">

@@ -29,7 +29,6 @@ const SignupController = async (req, res) => {
 
 const VerifyController = async (req, res) => {
   const { token } = req.query;
-  console.log(token);
   try {
     await authService.Verify(token);
     res.status(200).redirect(process.env.LOGIN_REDIRECT);
@@ -43,7 +42,7 @@ const LoginController = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const { accessToken, refreshToken } = await authService.Login(
+    const { accessToken, refreshToken, userProfile } = await authService.Login(
       email,
       password
     );
@@ -53,7 +52,7 @@ const LoginController = async (req, res) => {
       secure: true,
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
-    res.status(200).json({ accessToken });
+    res.status(200).json({ accessToken, userProfile });
   } catch (err) {
     console.log(err);
     res.status(400).json({ message: err.message });

@@ -80,8 +80,9 @@ const Login = () => {
         },
       });
       const result = response.data;
+
       dispatch(setAccessToken(result.accessToken));
-      dispatch(setUser(result.user));
+      dispatch(setUser(result.userProfile));
       reset();
       router.push("/");
     } catch (error) {

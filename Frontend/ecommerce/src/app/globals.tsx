@@ -8,7 +8,7 @@ interface User {
 
 interface AuthState {
   accessToken: string | null;
-  user: User | null;
+  userProfile: User | null;
 }
 
 export type { User, AuthState };
