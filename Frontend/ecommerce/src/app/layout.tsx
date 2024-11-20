@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import NavBar from "./Components/home_page/Nav/nav";
+import NavBar from "./Components/Nav/nav";
+import Footer from "./Components/Footer/footer";
 
 const geistSans = localFont({
   src: "./fonts/Poppins-Regular.ttf",
@@ -32,6 +33,7 @@ export default function RootLayout({
       >
         <NavBar />
         {children}
+        <Footer />
       </body>
     </html>
   );

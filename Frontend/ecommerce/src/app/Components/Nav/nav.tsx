@@ -42,7 +42,7 @@ const NavBar = () => {
               href="/products"
               className="py-4 px-2 font-semibold hover:text-primaryHover transition duration-300"
             >
-              Products
+              Shop
               {path === "/products" && (
                 <hr className="border-b-2 border-primaryBrown" />
               )}
