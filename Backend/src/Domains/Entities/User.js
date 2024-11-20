@@ -10,7 +10,10 @@ class User {
     googleId = null,
     token = null,
     tokenExpires = null,
-    createdAt = null
+    createdAt = null,
+    profile = null,
+    phone = null,
+    address = null
   ) {
     this.id = new ObjectId();
     this.name = name;
@@ -21,6 +24,9 @@ class User {
     this.token = token;
     this.tokenExpires = tokenExpires;
     this.createdAt = createdAt || new Date();
+    this.profile = profile;
+    this.phone = phone;
+    this.address = address;
   }
 }
 

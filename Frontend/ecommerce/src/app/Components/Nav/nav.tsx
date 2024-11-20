@@ -5,10 +5,14 @@ import Image from "next/image";
 import logo from "@assets/logo (3).png";
 import { usePathname } from "next/navigation";
 import { FaCartShopping } from "react-icons/fa6";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/store/index";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const path = usePathname();
+  const user = useSelector((state: RootState) => state.auth.user);
+  console.log("The user", user);
 
   return (
     <nav className="bg-white shadow-2xl drop-shadow-lg text-primaryDark">

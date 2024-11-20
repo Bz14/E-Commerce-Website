@@ -11,6 +11,8 @@ import { useEffect } from "react";
 import Spinner from "@/app/Components/UI/spinner";
 import { useRouter } from "next/navigation";
 
+import axios from "axios";
+
 type SignUpForm = {
   name: string;
   email: string;
@@ -76,27 +78,27 @@ const SignUp = () => {
   const onError = (errors: FieldErrors) => {
     console.log(errors);
   };
+
   const onSubmit = async (data: SignUpForm) => {
     setLoading(true);
     try {
-      const response = await fetch(`${apiUrl}/auth/signup`, {
-        method: "POST",
+      const response = await axios.post(`${apiUrl}/auth/signup`, data, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
       });
-      if (!response.ok) {
-        const data = await response.json();
-        setError(
-          data.message || "An error occurred while creating your account."
-        );
-        return;
-      }
+      console.log(response);
       reset();
       router.push(`/verify?email=${encodeURIComponent(data.email)}`);
     } catch (error) {
-      setError("Something went wrong");
+      if (axios.isAxiosError(error)) {
+        const errorMessage =
+          error.response?.data?.message ||
+          "An error occurred while creating your account.";
+        setError(errorMessage);
+      } else {
+        setError("Something went wrong");
+      }
       console.log("Error", error);
     } finally {
       setLoading(false);

@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import NavBar from "./Components/Nav/nav";
 import Footer from "./Components/Footer/footer";
+import ReduxProvider from "@/app/store/providers";
+import { store } from "./store";
 
 const geistSans = localFont({
   src: "./fonts/Poppins-Regular.ttf",
@@ -31,9 +33,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NavBar />
-        {children}
-        <Footer />
+        <ReduxProvider store={store}>
+          <NavBar />
+          {children}
+          <Footer />
+        </ReduxProvider>
       </body>
     </html>
   );

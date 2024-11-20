@@ -10,6 +10,9 @@ import * as yup from "yup";
 import { useEffect } from "react";
 import Spinner from "@/app/Components/UI/spinner";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setAccessToken, setUser } from "@/app/store/slices/authSlice";
 
 type LoginForm = {
   email: string;
@@ -57,6 +60,7 @@ const Login = () => {
     formState;
   const apiUrl = "http://localhost:5000/api/v1"; // process.env.API_URL;
   const router = useRouter();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -66,26 +70,29 @@ const Login = () => {
   const onError = (errors: FieldErrors) => {
     console.log(errors);
   };
+
   const onSubmit = async (data: LoginForm) => {
     setLoading(true);
     try {
-      const response = await fetch(`${apiUrl}/auth/login`, {
-        method: "POST",
+      const response = await axios.post(`${apiUrl}/auth/login`, data, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
       });
-      const result = await response.json();
-      if (!response.ok) {
-        setError(result.message || "An error occurred while logging.");
-        return;
-      }
-      console.log(result);
+      const result = response.data;
+      dispatch(setAccessToken(result.accessToken));
+      dispatch(setUser(result.user));
       reset();
       router.push("/");
     } catch (error) {
-      setError("Something went wrong");
+      if (axios.isAxiosError(error)) {
+        const errorMessage =
+          error.response?.data?.message ||
+          "An error occurred while logging in.";
+        setError(errorMessage);
+      } else {
+        setError("Something went wrong");
+      }
       console.log("Error", error);
     } finally {
       setLoading(false);

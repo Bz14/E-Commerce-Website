@@ -39,7 +39,7 @@ class Verification {
       },
       process.env.ACCESS_TOKEN_SECRET,
       {
-        expiresIn: "7d",
+        expiresIn: "15m",
       }
     );
   };
@@ -52,7 +52,7 @@ class Verification {
       },
       process.env.REFRESH_TOKEN_SECRET,
       {
-        expiresIn: "15m",
+        expiresIn: "7d",
       }
     );
   };
