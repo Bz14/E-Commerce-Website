@@ -284,6 +284,42 @@ const products = [
     },
   ],
 ];
+
+const recommended = [
+  {
+    id: 1,
+    img: dress3,
+    name: "Sneaker 1",
+    price: "$49.99",
+    rating: 4.5,
+    tags: ["New", "Gucci"],
+  },
+  {
+    id: 2,
+    img: jacket1,
+    name: "Sneaker 2",
+    price: "$59.99",
+    rating: 4.0,
+    tags: ["Offer", "Gucci"],
+  },
+  {
+    id: 3,
+    img: shirt1,
+    name: "High Heel",
+    price: "$39.99",
+    rating: 4.8,
+    tags: ["Hot", "Gucci"],
+  },
+  {
+    id: 2,
+    img: jacket1,
+    name: "Sneaker 2",
+    price: "$59.99",
+    rating: 4.0,
+    tags: ["Offer", "Gucci"],
+  },
+];
+
 const titles = ["Clothes", "Shoes", "Accessories", "Bags"];
 
-export { products, titles };
+export { recommended, products, titles };

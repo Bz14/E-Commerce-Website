@@ -23,4 +23,4 @@ const RefreshController = async (req, res) => {
   }
 };
 
-module.exports = { RefreshController };
+module.exports = RefreshController;
