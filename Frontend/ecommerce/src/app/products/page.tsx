@@ -4,6 +4,7 @@ import Hero from "./Components/Hero";
 import ProductList from "./Components/product_list";
 import SearchBar from "../Components/UI/searchbar";
 import { recommended, products, titles } from "./Components/sampledata";
+import Filter from "../Components/UI/filter";
 
 const ProductPage = () => {
   return (
@@ -11,10 +12,18 @@ const ProductPage = () => {
       <Hero />
       <div>
         <div className="flex justify-center items-center">
-          <SearchBar />
+          <div className="w-[500px]">
+            <SearchBar />
+          </div>
         </div>
-
-        <ProductList products={recommended} title="Recommended" />
+        <div className="flex flex-col lg:flex-row gap-4">
+          <div className="w-fit ml-10">
+            <Filter />
+          </div>
+          <div className="flex-grow">
+            <ProductList products={recommended} title="Recommended" />
+          </div>
+        </div>
       </div>
       {products.map((product, index) => (
         <ProductList key={index} products={product} title={titles[index]} />
