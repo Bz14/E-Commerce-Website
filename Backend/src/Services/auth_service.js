@@ -76,16 +76,20 @@ class AuthService {
     if (!user.isVerified) {
       throw new Error("Email not verified.");
     }
-    try {
-      const newUser = new User(user.name, user.email, user.password);
-      const passwordMatch = await newUser.password.ComparePassword(password);
-      if (!passwordMatch) {
-        throw new Error("Password does not match.");
-      }
-    } catch (error) {
-      throw error;
+    if (user.googleId && password) {
+      throw new Error("Please login with Google.");
     }
-
+    if (!googleId) {
+      try {
+        const newUser = new User(user.name, user.email, user.password);
+        const passwordMatch = await newUser.password.ComparePassword(password);
+        if (!passwordMatch) {
+          throw new Error("Password does not match.");
+        }
+      } catch (error) {
+        throw error;
+      }
+    }
     const accessToken = await this.verificationService.GenerateAccessToken(
       user
     );
@@ -101,6 +105,22 @@ class AuthService {
       user.address
     );
     return { accessToken, refreshToken, userProfile };
+  }
+
+  async LoginWithGoogle(user) {
+    const existingUser = await this.authRepo.FindUserByEmail(user.email);
+    if (!existingUser) {
+      const newUser = new User(
+        user.displayName,
+        user.email,
+        user.id,
+        true,
+        user.id
+      );
+      await this.authRepo.CreateUser(newUser);
+      return this.Login(user.email, null);
+    }
+    return this.Login(user.email, null);
   }
 }
 

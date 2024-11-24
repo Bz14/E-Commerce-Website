@@ -59,4 +59,26 @@ const LoginController = async (req, res) => {
   }
 };
 
-module.exports = { SignupController, VerifyController, LoginController };
+const GoogleAuthCallback = async (req, res) => {
+  try {
+    const { accessToken, refreshToken, userProfile } =
+      await authService.LoginWithGoogle(req.user);
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      sameSite: "strict",
+      secure: true,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+    res.status(200).json({ accessToken, userProfile });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ message: err.message });
+  }
+};
+
+module.exports = {
+  SignupController,
+  VerifyController,
+  LoginController,
+  GoogleAuthCallback,
+};

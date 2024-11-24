@@ -1,4 +1,5 @@
 const UserModel = require("../Models/user_models");
+const User = require("../Domains/Entities/User");
 
 class AuthRepository {
   constructor() {}
@@ -40,6 +41,25 @@ class AuthRepository {
   async VerifyUser(email) {
     try {
       await UserModel.updateOne({ email }, { isVerified: true });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async FindOrCreateUser(profile) {
+    try {
+      let user = await UserModel.findOne({ email: profile.emails[0].value });
+      if (!user) {
+        user = new User(
+          profile.displayName,
+          profile.emails[0].value,
+          profile.id,
+          true,
+          profile.id
+        );
+        await this.CreateUser(user);
+      }
+      return user;
     } catch (error) {
       throw error;
     }

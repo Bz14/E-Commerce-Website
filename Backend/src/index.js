@@ -8,6 +8,7 @@ const connectToDb = require("./Config/db");
 const authRoute = require("./Routes/auth_route");
 const emailRoute = require("./Routes/email_route");
 const refreshRoute = require("./Routes/refresh_route");
+const passport = require("./Services/oauth_service");
 require("dotenv").config();
 
 const port = process.env.API_PORT || 5000;
@@ -16,6 +17,9 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(router);
 app.use(cookieParser());
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 connectToDb();
 
