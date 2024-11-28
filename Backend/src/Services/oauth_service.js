@@ -17,7 +17,7 @@ passport.use(
 
     async (request, accessToken, refreshToken, profile, done) => {
       try {
-        const user = await auth.FindOrCreateGoogleUser(profile);
+        const user = await auth.FindOrCreateUser(profile);
         return done(null, user);
       } catch (error) {
         return done(error, null);

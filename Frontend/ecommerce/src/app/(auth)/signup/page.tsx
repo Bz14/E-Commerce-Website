@@ -79,6 +79,9 @@ const SignUp = () => {
     console.log(errors);
   };
 
+  const handleSignUpWithGoogle = () => {
+    window.location.href = `${apiUrl}/auth/google`;
+  };
   const onSubmit = async (data: SignUpForm) => {
     setLoading(true);
     try {
@@ -223,6 +226,7 @@ const SignUp = () => {
             </button>
             <p className="text-sm">Or</p>
             <button
+              onClick={handleSignUpWithGoogle}
               type="button"
               className="w-full bg-gray-100 hover:bg-gray-200 text-primaryDark font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center justify-center"
             >

@@ -76,10 +76,10 @@ class AuthService {
     if (!user.isVerified) {
       throw new Error("Email not verified.");
     }
-    if (user.googleId && password) {
-      throw new Error("Please login with Google.");
-    }
-    if (!googleId) {
+    // if (user.googleId && password != user.googleId) {
+    //   throw new Error("Please login with Google.");
+    // }
+    if (!user.googleId) {
       try {
         const newUser = new User(user.name, user.email, user.password);
         const passwordMatch = await newUser.password.ComparePassword(password);
@@ -96,27 +96,14 @@ class AuthService {
     const refreshToken = await this.verificationService.GenerateRefreshToken(
       user
     );
-
-    const userProfile = new UserProfile(
-      user.name,
-      user.email,
-      user.profile,
-      user.phone,
-      user.address
-    );
-    return { accessToken, refreshToken, userProfile };
+    let profile = user.profile;
+    return { accessToken, refreshToken, profile };
   }
 
   async LoginWithGoogle(user) {
     const existingUser = await this.authRepo.FindUserByEmail(user.email);
     if (!existingUser) {
-      const newUser = new User(
-        user.displayName,
-        user.email,
-        user.id,
-        true,
-        user.id
-      );
+      const newUser = new User(user.displayName, user.email, "", true, user.id);
       await this.authRepo.CreateUser(newUser);
       return this.Login(user.email, null);
     }

@@ -122,7 +122,7 @@ const Login = () => {
               {errors.email?.message}
             </p>
           </div>
-          <div className="mb-6 relative">
+          <div className="mb-4 relative">
             <label className="block text-sm font-bold mb-2" htmlFor="password">
               Password
             </label>
@@ -150,6 +150,12 @@ const Login = () => {
               {errors.password?.message}
             </p>
           </div>
+          <Link
+            href="/rest-password"
+            className="flex justify-end mb-2 text-primaryBrown"
+          >
+            Forgot password?
+          </Link>
           <div className="mb-4 text-center">
             Don&apos;t have an account?{" "}
             <Link href="/signup" className="text-primaryBrown hover:underline">

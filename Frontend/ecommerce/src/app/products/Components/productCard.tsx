@@ -11,7 +11,7 @@ type Product = {
   tags: string[];
 };
 
-const ProductCard = ({ img, name, price, rating, tags }: Product) => {
+const ProductCard = ({ id, img, name, price, rating, tags }: Product) => {
   return (
     <div
       className="relative bg-cover bg-center shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105"
@@ -48,7 +48,7 @@ const ProductCard = ({ img, name, price, rating, tags }: Product) => {
         </div>
         <div className="flex justify-end">
           <Link
-            href="/product-detail"
+            href={`/product_detail/${id}`}
             className=" bg-primaryBrown text-white py-2 px-4 rounded hover:bg-primaryHover mt-20"
           >
             Shop Now

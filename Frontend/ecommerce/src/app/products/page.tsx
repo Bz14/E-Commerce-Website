@@ -5,8 +5,13 @@ import ProductList from "./Components/product_list";
 import SearchBar from "../Components/UI/searchbar";
 import { recommended, products, titles } from "./Components/sampledata";
 import Filter from "../Components/UI/filter";
+import { useSelector } from "react-redux";
+import { AuthState } from "../globals";
 
 const ProductPage = () => {
+  const accessToken = useSelector((state: AuthState) => state.accessToken);
+  const profile = useSelector((state: AuthState) => state.userProfile);
+  console.log(accessToken, profile);
   return (
     <div className="min-h-screen bg-gray-100">
       <Hero />
