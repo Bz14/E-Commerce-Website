@@ -101,7 +101,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center text-primaryDark bg-primaryBrown">
+    <div className="min-h-screen flex items-center justify-center text-primaryDark bg-primaryHover">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
         <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>

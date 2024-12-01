@@ -19,7 +19,14 @@ const product: Product = {
   oldPrice: "$150",
   discount: "30% off",
   rating: 4,
+  quantity: 10,
+  description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec
+          sagittis ligula. Nulla facilisi. Donec euismod, orci a lacinia
+          fermentum, odio nunc tincidunt turpis, nec tincidunt nulla purus vitae`,
+  reviews: 100,
+  size: ["XS", "S", "M", "L", "XL"],
   tags: ["Summer", "Casual", "Cotton"],
+  colors: ["Red", "Blue", "Green"],
   gallery: [
     { src: img1, alt: "Dress" },
     { src: img2, alt: "Dress" },
@@ -40,8 +47,8 @@ function ProductDetail({ params }: ProductDetailProps) {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold">{prod.name}</h1>
-      <div className="flex items-center">
+      <h1 className="text-2xl font-bold ml-5">{prod.name}</h1>
+      <div className="flex flex-col md:flex-row">
         <ProductImageGallery gallery={prod.gallery} />
         <ProductDetails product={prod} />
       </div>

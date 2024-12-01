@@ -31,12 +31,17 @@ interface Price {
 interface Product {
   id: string;
   name: string;
+  description: string;
+  size: string[];
   price: string;
   oldPrice?: string;
   discount?: string;
+  reviews?: number;
   rating: number;
   tags: string[];
   gallery: ProductGallery[];
+  colors: string[];
+  quantity: number;
 }
 
 export type {

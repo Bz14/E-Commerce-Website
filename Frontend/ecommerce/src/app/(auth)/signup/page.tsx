@@ -109,8 +109,8 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center text-primaryDark bg-primaryBrown">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md mt-10">
+    <div className="min-h-screen flex items-center justify-center text-primaryDark bg-primaryHover">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md mt-10 mb-3">
         <h1 className="text-2xl font-bold mb-6 text-center">Sign Up</h1>
         <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
           <div className="mb-4">
