@@ -1,28 +1,37 @@
 "use client";
 import Image from "next/image";
-import { ProductGallery } from "@globals/globals";
+import { ProductImageGalleryProps } from "@globals/globals";
+import { FaLeftLong, FaRightLong } from "react-icons/fa6";
 
-const ProductImageGallery = (product_gallery: ProductGallery[]) => {
-  console.log(product_gallery);
+const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
+  gallery,
+}) => {
+  console.log("Gallery", gallery);
   return (
-    <div className="flex flex-col">
-      <div className="border p-4">
-        <Image
-          src={product_gallery[0] && product_gallery[0].src}
-          alt={product_gallery[0] && product_gallery[0].alt}
-          className="w-full h-auto"
-        />
-      </div>
-      <div className="flex gap-2 mt-4">
-        {/* {product_gallery &&
-          product_gallery.map((gallery, index) => (
-            <Image
-              key={index}
-              src={gallery.src && gallery.src}
-              alt={gallery && gallery.alt}
-              className="w-16 h-16"
-            />
-          ))} */}
+    <div className="flex flex-col p-5">
+      <div className="border p-4 w-fit">
+        <div className="bg-gray-200 flex items-center justify-between">
+          <FaLeftLong className="ml-4 text-primaryBrown" />
+          <Image
+            src={gallery[0] && gallery[0].src}
+            alt={gallery[0] && gallery[0].alt}
+            className="border rounded-sm"
+            width={400}
+            height={600}
+          />
+          <FaRightLong className="mr-4 text-primaryBrown" />
+        </div>
+        <div className="flex flex-row justify-between mt-2">
+          {gallery &&
+            gallery.map((g, index) => (
+              <Image
+                key={index}
+                src={g.src && g.src}
+                alt={g && g.alt}
+                className="w-16 h-16 rounded-sm bg-primaryBrown"
+              />
+            ))}
+        </div>
       </div>
     </div>
   );

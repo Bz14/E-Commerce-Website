@@ -16,6 +16,9 @@ interface ProductGallery {
   src: StaticImageData;
   alt: string;
 }
+interface ProductImageGalleryProps {
+  gallery: ProductGallery[];
+}
 
 interface Product {
   id: string;
@@ -26,4 +29,10 @@ interface Product {
   gallery: ProductGallery[];
 }
 
-export type { User, AuthState, ProductGallery, Product };
+export type {
+  User,
+  AuthState,
+  ProductGallery,
+  Product,
+  ProductImageGalleryProps,
+};

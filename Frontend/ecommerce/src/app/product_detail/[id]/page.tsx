@@ -1,4 +1,4 @@
-import img1 from "@assets/dress/acc1.png";
+import img1 from "@assets/shoe/shoe1.png";
 import img2 from "@assets/dress1.jpg";
 import img3 from "@assets/dress2.jpg";
 import img4 from "@assets/dress3.jpg";
@@ -31,6 +31,7 @@ function FetchProductDetail() {
 
 function ProductDetail({ params }: ProductDetailProps) {
   const { id } = params;
+  console.log(id);
 
   const prod = FetchProductDetail();
 
