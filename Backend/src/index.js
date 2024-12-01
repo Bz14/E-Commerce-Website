@@ -8,6 +8,7 @@ const connectToDb = require("./Config/db");
 const authRoute = require("./Routes/auth_route");
 const emailRoute = require("./Routes/email_route");
 const refreshRoute = require("./Routes/refresh_route");
+const productRoute = require("./Routes/product_route");
 const passport = require("./Services/oauth_service");
 require("dotenv").config();
 
@@ -26,6 +27,7 @@ connectToDb();
 router.use("/api/v1/auth", authRoute);
 router.use("/api/v1", emailRoute);
 router.use("/api/v1", refreshRoute);
+router.use("/api/v1", productRoute);
 
 app.get("/api/v1", (req, res) => {
   res.status(200).send("E-Commerce server");
