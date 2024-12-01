@@ -4,6 +4,7 @@ import img3 from "@assets/dress2.jpg";
 import img4 from "@assets/dress3.jpg";
 import ProductImageGallery from "./Components/product_gallery";
 import { Product } from "@globals/globals";
+import ProductDetails from "./Components/product_details";
 
 interface ProductDetailProps {
   params: {
@@ -15,6 +16,8 @@ const product: Product = {
   id: "1",
   name: "Dress",
   price: "$100",
+  oldPrice: "$150",
+  discount: "30% off",
   rating: 4,
   tags: ["Summer", "Casual", "Cotton"],
   gallery: [
@@ -38,7 +41,10 @@ function ProductDetail({ params }: ProductDetailProps) {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold">{prod.name}</h1>
-      <ProductImageGallery gallery={prod.gallery} />
+      <div className="flex items-center">
+        <ProductImageGallery gallery={prod.gallery} />
+        <ProductDetails product={prod} />
+      </div>
     </div>
   );
 }

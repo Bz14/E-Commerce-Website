@@ -6,7 +6,6 @@ import { FaLeftLong, FaRightLong } from "react-icons/fa6";
 const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
   gallery,
 }) => {
-  console.log("Gallery", gallery);
   return (
     <div className="flex flex-col p-5">
       <div className="border p-4 w-fit">

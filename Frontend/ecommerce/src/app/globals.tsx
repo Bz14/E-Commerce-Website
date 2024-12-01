@@ -20,10 +20,20 @@ interface ProductImageGalleryProps {
   gallery: ProductGallery[];
 }
 
+interface ProductDetailsProps {
+  product: Product;
+}
+
+interface Price {
+  prices: string | undefined;
+}
+
 interface Product {
   id: string;
   name: string;
   price: string;
+  oldPrice?: string;
+  discount?: string;
   rating: number;
   tags: string[];
   gallery: ProductGallery[];
@@ -35,4 +45,6 @@ export type {
   ProductGallery,
   Product,
   ProductImageGalleryProps,
+  Price,
+  ProductDetailsProps,
 };
