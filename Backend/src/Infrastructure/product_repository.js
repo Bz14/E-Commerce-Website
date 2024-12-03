@@ -1,5 +1,4 @@
-const ProductModel = require("../Models/product_model");
-const Product = require("../Domains/Entities/Product");
+const ProductModel = require("../Models/product");
 
 class ProductRepository {
   constructor() {}

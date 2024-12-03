@@ -44,6 +44,14 @@ interface Product {
   quantity: number;
 }
 
+interface Cart {
+  id: number;
+  image: ProductGallery;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
 export type {
   User,
   AuthState,
@@ -52,4 +60,5 @@ export type {
   ProductImageGalleryProps,
   Price,
   ProductDetailsProps,
+  Cart,
 };
