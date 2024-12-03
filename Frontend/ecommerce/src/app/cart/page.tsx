@@ -1,6 +1,9 @@
 import { Cart } from "@globals/globals";
 import img1 from "@assets/dress2.jpg";
 import CartItem from "./components/cart_item";
+import CartHeader from "./components/cart_header";
+import CartTitle from "./components/cart_title";
+import CartCheckout from "./components/cart_checkout";
 
 const carts: Cart[] = [
   {
@@ -27,22 +30,18 @@ const carts: Cart[] = [
 
 const CartPage = () => {
   return (
-    <div className="bg-gray-100 h-screen">
-      <div>
-        <h1>Your Cart</h1>
-        <h2>{2} items in your cart</h2>
-      </div>
-      <div className="bg-white w-full lg:w-3/5 shadow-2xl rounded-2xl p-4 lg:m-8">
-        <div className="grid grid-cols-5 gap-4 font-semibold text-primaryDark border-b border-primaryBrown pb-2 ">
-          <h1>Product</h1>
-          <h1>Name</h1>
-          <h1>Price</h1>
-          <h1>Quantity</h1>
-          <h1>Total Price</h1>
+    <div className="bg-gray-50 h-screen grid grid-cols-5 gap-4 lg:gap-2">
+      <div className="col-span-5 lg:col-span-4 lg:ml-7">
+        <CartTitle />
+        <div className="bg-white shadow-2xl rounded-2xl p-4">
+          <CartHeader />
+          {carts.map((item, idx) => (
+            <CartItem cartItem={item} key={idx} />
+          ))}
         </div>
-        {carts.map((item, idx) => (
-          <CartItem cartItem={item} key={idx} />
-        ))}
+      </div>
+      <div className="col-span-5 lg:col-span-1 bg-white shadow-md rounded-lg p-4 lg:mt-8 lg:mr-3 lg:mb-3">
+        <CartCheckout />
       </div>
     </div>
   );
