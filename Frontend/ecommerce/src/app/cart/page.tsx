@@ -30,7 +30,7 @@ const carts: Cart[] = [
 
 const CartPage = () => {
   return (
-    <div className="bg-gray-50 h-screen grid grid-cols-5 gap-4 lg:gap-2">
+    <div className="bg-gray-50 min-h-screen grid grid-cols-5 gap-4 lg:gap-2">
       <div className="col-span-5 lg:col-span-4 lg:ml-7">
         <CartTitle />
         <div className="bg-white shadow-2xl rounded-2xl p-4">
