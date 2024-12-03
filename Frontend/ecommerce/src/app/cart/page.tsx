@@ -27,13 +27,13 @@ const carts: Cart[] = [
 
 const CartPage = () => {
   return (
-    <div className="bg-gray-200 h-screen">
+    <div className="bg-gray-100 h-screen">
       <div>
         <h1>Your Cart</h1>
         <h2>{2} items in your cart</h2>
       </div>
       <div className="bg-white w-full lg:w-3/5 shadow-2xl rounded-2xl p-4 lg:m-8">
-        <div className="grid grid-cols-5 gap-4 font-semibold text-primaryDark border-b pb-2 ">
+        <div className="grid grid-cols-5 gap-4 font-semibold text-primaryDark border-b border-primaryBrown pb-2 ">
           <h1>Product</h1>
           <h1>Name</h1>
           <h1>Price</h1>

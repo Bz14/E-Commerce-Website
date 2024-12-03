@@ -6,9 +6,15 @@ interface CartItemProps {
 }
 const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
   return (
-    <div className="grid grid-cols-5 gap-4 items-center py-2 border-b last:border-b-0 text-primaryDark">
+    <div className="grid grid-cols-5 gap-4 items-center py-2 border-b border-primaryBrown last:border-b-0 text-primaryDark">
       <div className="flex">
-        <Image src={cartItem.image.src} alt="" width={100} height={100} />
+        <Image
+          src={cartItem.image.src}
+          alt=""
+          width={100}
+          height={100}
+          className="rounded-lg shadow-sm"
+        />
       </div>
       <div>
         <h3 className="font-bold">{cartItem.name}</h3>
