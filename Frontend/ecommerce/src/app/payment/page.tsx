@@ -12,12 +12,12 @@ const Payment = () => {
         </h1>
         <div className="flex gap-2 mb-2 mt-4">
           <button className="p-2 shadow-xl border border-gray-400">
-            <Link href="/payment-success">
+            <Link href="/payment/payment-success">
               <Image src={img1} alt="chapa" width={150} height={150} />
             </Link>
           </button>
           <button className="p-2 shadow-xl border border-gray-400">
-            <Link href="/payment-failure">
+            <Link href="/payment/payment-failure">
               <Image src={img2} alt="paypal" width={150} height={150} />
             </Link>
           </button>
