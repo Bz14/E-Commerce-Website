@@ -85,6 +85,12 @@ const NavBar = () => {
                 1
               </span>
             </Link>
+            <Link
+              href="/profile"
+              className="block py-2 px-4 text-sm hover:bg-gray-200 text-gray-500"
+            >
+              Profile
+            </Link>
           </div>
           <div className="md:hidden flex items-center">
             <button
@@ -148,7 +154,7 @@ const NavBar = () => {
         </Link>
         <Link
           href="/signup"
-          className="py-2 px-4 text-gray-500 bg-primaryBrown rounded-full text-white font-semibold hover:bg-primaryHover transition duration-300"
+          className="py-2 px-4 text-gray-500 bg-primaryBrown rounded-full font-semibold hover:bg-primaryHover transition duration-300"
         >
           Sign Up
         </Link>
@@ -157,6 +163,12 @@ const NavBar = () => {
           className="block py-2 px-4 text-sm hover:bg-gray-200"
         >
           Cart
+        </Link>
+        <Link
+          href="/profile"
+          className="block py-2 px-4 text-sm hover:bg-gray-200 text-gray-500"
+        >
+          Profile
         </Link>
       </div>
     </nav>
