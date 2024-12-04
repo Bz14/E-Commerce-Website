@@ -1,3 +1,4 @@
+import Link from "next/link";
 const CartTotal = () => {
   return (
     <div className="bg-primaryHover text-white p-6 w-full max-w-md mx-auto space-y-4 border-b border-primaryBrown">
@@ -22,7 +23,7 @@ const CartTotal = () => {
       </div>
 
       <button className="w-full py-2 px-4 bg-primaryDark text-white rounded-md hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-primaryDark">
-        Proceed to Checkout
+        <Link href="/payment">Proceed to Checkout</Link>
       </button>
     </div>
   );

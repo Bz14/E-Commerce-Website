@@ -16,7 +16,7 @@ const NavBar = () => {
   console.log("The user", user, token);
 
   return (
-    <nav className="bg-white shadow-2xl drop-shadow-lg text-primaryDark">
+    <nav className="bg-white shadow-lg drop-shadow-lg text-primaryDark">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-7">
