@@ -52,7 +52,7 @@ const UserInformation = () => {
           height={150}
         />
         {isEditing && (
-          <button className="mt-2 text-sm text-blue-500 underline">
+          <button className="mt-2 text-sm text-primaryBrown underline">
             Change Picture
           </button>
         )}
@@ -61,58 +61,68 @@ const UserInformation = () => {
       <div className="mt-6">
         {isEditing ? (
           <>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-6 bg-gray-50 p-6 rounded-lg shadow-lg text-primaryDark ">
               <div>
-                <label className="block text-gray-600">Name</label>
+                <label className="block font-semibold">Name</label>
                 <input
                   type="text"
                   name="name"
                   value={editableUser.name}
                   onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:outline-none focus:ring focus:ring-blue-300"
+                  className="w-full border border-gray-300 rounded-md p-3 mt-2 focus:outline-none focus:ring-2 focus:ring-primaryBrown"
+                  placeholder="Enter your name"
                 />
               </div>
               <div>
-                <label className="block text-gray-600">Email</label>
+                <label className="block text-gray-700 font-semibold">
+                  Email
+                </label>
                 <input
                   type="email"
                   name="email"
                   value={editableUser.email}
                   onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:outline-none focus:ring focus:ring-blue-300"
+                  className="w-full border border-gray-300 rounded-md p-3 mt-2 focus:outline-none focus:ring-2 focus:ring-primaryBrown"
+                  placeholder="Enter your email"
                 />
               </div>
               <div>
-                <label className="block text-gray-600">Phone</label>
+                <label className="block text-gray-700 font-semibold">
+                  Phone
+                </label>
                 <input
                   type="text"
                   name="phone"
                   value={editableUser.phone}
                   onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:outline-none focus:ring focus:ring-blue-300"
+                  className="w-full border border-gray-300 rounded-md p-3 mt-2 focus:outline-none focus:ring-2 focus:ring-primaryBrown"
+                  placeholder="Enter your phone number"
                 />
               </div>
               <div>
-                <label className="block text-gray-600">Address</label>
+                <label className="block text-gray-700 font-semibold">
+                  Address
+                </label>
                 <input
                   type="text"
                   name="address"
                   value={editableUser.address}
                   onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:outline-none focus:ring focus:ring-blue-300"
+                  className="w-full border border-gray-300 rounded-md p-3 mt-2 focus:outline-none focus:ring-2 focus:ring-primaryBrown"
+                  placeholder="Enter your address"
                 />
               </div>
             </div>
-            <div className="flex justify-end gap-4 mt-6">
+            <div className="flex justify-end gap-4 mt-6 text-primaryDark">
               <button
                 onClick={handleCancel}
-                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+                className="px-6 py-2 text-gray-700 bg-gray-200 rounded-md shadow-md hover:bg-gray-300 transition duration-300"
               >
                 Cancel
               </button>
               <button
                 onClick={handleSave}
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                className="px-6 py-2 text-white bg-gradient-to-r from-primaryBrown to-primaryHover rounded-md shadow-md hover:opacity-90 transition duration-300"
               >
                 Save
               </button>
