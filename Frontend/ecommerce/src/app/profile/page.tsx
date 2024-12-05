@@ -1,5 +1,7 @@
+import Profile from "./profile-detail/page";
+
 const ProfilePage = () => {
-  return <div>Profile Page</div>;
+  return <Profile />;
 };
 
 export default ProfilePage;

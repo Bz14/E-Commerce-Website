@@ -52,7 +52,16 @@ interface Cart {
   quantity: number;
 }
 
+interface UserProfile {
+  image: StaticImageData;
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+}
+
 export type {
+  UserProfile,
   User,
   AuthState,
   ProductGallery,

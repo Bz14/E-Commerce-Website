@@ -21,15 +21,12 @@ const SideBar = () => {
           isOpen ? "w-64" : "w-16"
         } h-screen bg-primaryBrown text-white p-6 flex flex-col items-start transition-all duration-300`}
       >
-        {/* Toggle Button */}
         <button
           className="mb-6 text-xl focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
         >
           <FaBars />
         </button>
-
-        {/* Menu List */}
         <ul className="space-y-4 w-full">
           <li
             className={`flex items-center ${
