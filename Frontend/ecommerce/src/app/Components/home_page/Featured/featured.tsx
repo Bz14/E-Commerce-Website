@@ -39,7 +39,7 @@ const featured: Product[] = [
 
 const Featured = () => {
   return (
-    <section className="bg-white py-12 text-primaryDark">
+    <section className="bg-gray-100 py-12 text-primaryDark">
       <div className="container mx-auto px-4 w-fit">
         <h2 className="text-3xl font-bold text-center mb-8">
           Featured Products

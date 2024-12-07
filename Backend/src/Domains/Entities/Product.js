@@ -18,7 +18,8 @@ class Product {
     size,
     tags,
     colors,
-    gallery
+    gallery,
+    featured
   ) {
     this.id = id;
     this.name = new Name(name);
@@ -33,6 +34,7 @@ class Product {
     this.tags = tags;
     this.colors = colors;
     this.gallery = gallery;
+    this.featured = featured;
   }
 }
 

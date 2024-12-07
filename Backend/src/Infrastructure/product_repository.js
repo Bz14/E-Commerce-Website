@@ -11,6 +11,15 @@ class ProductRepository {
       throw error;
     }
   }
+
+  async GetFeaturedProducts() {
+    try {
+      const products = await ProductModel.find({ featured: true }).limit(3);
+      return products;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 module.exports = ProductRepository;

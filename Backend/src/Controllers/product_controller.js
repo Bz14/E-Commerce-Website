@@ -15,4 +15,14 @@ const ProductDetailController = async (req, res) => {
   }
 };
 
-module.exports = { ProductDetailController };
+const ProductFeaturedController = async (req, res) => {
+  try {
+    const products = await productService.GetFeaturedProducts();
+    res.status(200).json(products);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ message: err.message });
+  }
+};
+
+module.exports = { ProductDetailController, ProductFeaturedController };

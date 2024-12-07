@@ -11,6 +11,15 @@ class ProductService {
       throw error;
     }
   }
+
+  async GetFeaturedProducts() {
+    try {
+      const products = await this.productRepo.GetFeaturedProducts();
+      return products;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 module.exports = ProductService;
