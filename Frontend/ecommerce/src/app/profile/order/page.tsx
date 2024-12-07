@@ -70,7 +70,7 @@ const OrderHistory = () => {
                     {order.quantity}
                   </td>
                   <td className="border border-gray-200 px-4 py-2 flex gap-2 justify-center">
-                    <button className="px-4 py-2 bg-primaryBrown text-white rounded-lg shadow hover:bg-primaryHover transition">
+                    <button className="px-4 py-2 bg-gradient-to-r from-primaryBrown to-primaryHover  text-white rounded-lg shadow hover:bg-primaryHover transition">
                       View
                     </button>
                     <button className="px-4 py-2 bg-primaryDark text-white rounded-lg shadow hover:bg-gray-400 transition">
