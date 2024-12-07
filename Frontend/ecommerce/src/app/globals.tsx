@@ -68,6 +68,14 @@ interface OrderDetail {
   quantity: number;
 }
 
+interface WishListProduct {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image: StaticImageData;
+}
+
 export type {
   UserProfile,
   User,
@@ -79,4 +87,5 @@ export type {
   ProductDetailsProps,
   Cart,
   OrderDetail,
+  WishListProduct,
 };
