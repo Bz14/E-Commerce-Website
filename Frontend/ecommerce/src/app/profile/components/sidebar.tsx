@@ -1,5 +1,7 @@
 "use client";
+
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import {
   FaUser,
@@ -12,7 +14,15 @@ import {
 
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const [isSelected, setIsSelected] = useState("profile");
+  const pathname = usePathname();
+
+  const navItems = [
+    { name: "Profile", path: "/profile/profile-detail", icon: FaUser },
+    { name: "Orders", path: "/profile/order", icon: FaBox },
+    { name: "Wishlist", path: "/profile/wishlist", icon: FaHeart },
+    { name: "Notification", path: "/profile/notification", icon: FaBell },
+    { name: "Logout", path: "/profile/logout", icon: FaSignOutAlt },
+  ];
 
   return (
     <div className="flex">
@@ -27,101 +37,27 @@ const SideBar = () => {
         >
           <FaBars />
         </button>
+
         <ul className="space-y-4 w-full">
-          <li
-            className={`flex items-center ${
-              isSelected === "profile"
-                ? "bg-white text-primaryBrown rounded-xl p-2 "
-                : ""
-            } cursor-pointer`}
-            onClick={() => setIsSelected("profile")}
-          >
-            <span className="text-lg">
-              <FaUser />
-            </span>
-            {isOpen && (
-              <Link
-                href="/profile/profile-detail"
-                className="hover:text-gray-300 ml-3"
-              >
-                Profile
-              </Link>
-            )}
-          </li>
-          <li
-            className={`flex items-center ${
-              isSelected === "orders"
-                ? "bg-white text-primaryBrown rounded-xl p-2 "
-                : ""
-            } cursor-pointer`}
-            onClick={() => setIsSelected("orders")}
-          >
-            <span className="text-lg">
-              <FaBox />
-            </span>
-            {isOpen && (
-              <Link href="/profile/order" className="hover:text-gray-300 ml-3">
-                Orders
-              </Link>
-            )}
-          </li>
-          <li
-            className={`flex items-center ${
-              isSelected === "wishlist"
-                ? "bg-white text-primaryBrown rounded-xl p-2 "
-                : ""
-            } cursor-pointer`}
-            onClick={() => setIsSelected("wishlist")}
-          >
-            <span className="text-lg">
-              <FaHeart />
-            </span>
-            {isOpen && (
-              <Link
-                href="/profile/wishlist"
-                className="hover:text-gray-300 ml-3"
-              >
-                Wishlist
-              </Link>
-            )}
-          </li>
-          <li
-            className={`flex items-center ${
-              isSelected === "notify"
-                ? "bg-white text-primaryBrown rounded-xl p-2 "
-                : ""
-            } cursor-pointer`}
-            onClick={() => setIsSelected("notify")}
-          >
-            <span className="text-lg">
-              <FaBell />
-            </span>
-            {isOpen && (
-              <Link
-                href="/profile/notification"
-                className="hover:text-gray-300 ml-3"
-              >
-                Notification
-              </Link>
-            )}
-          </li>
-          <li
-            className={`flex items-center ${
-              isSelected === "logout"
-                ? "bg-white text-primaryBrown rounded-xl p-2 "
-                : ""
-            } cursor-pointer`}
-            onClick={() => setIsSelected("logout")}
-          >
-            <span className="text-lg">
-              <FaSignOutAlt />
-            </span>
-            {isOpen && (
-              <Link href="/profile/logout" className="hover:text-gray-300 ml-3">
-                Logout
-              </Link>
-            )}
-          </li>
+          {navItems.map((item) => (
+            <li
+              key={item.name}
+              className={`flex items-center ${
+                pathname === item.path
+                  ? "bg-white text-primaryBrown rounded-xl p-2"
+                  : ""
+              } cursor-pointer`}
+            >
+              <span className="text-lg">
+                <item.icon />
+              </span>
+              {isOpen && (
+                <Link href={item.path} className="hover:text-gray-300 ml-3">
+                  {item.name}
+                </Link>
+              )}
+            </li>
+          ))}
         </ul>
       </div>
     </div>
