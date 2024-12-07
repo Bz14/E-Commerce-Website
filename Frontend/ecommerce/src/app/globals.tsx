@@ -60,6 +60,14 @@ interface UserProfile {
   address: string;
 }
 
+interface OrderDetail {
+  id: number;
+  date: string;
+  deliveredDate: string;
+  total: number;
+  quantity: number;
+}
+
 export type {
   UserProfile,
   User,
@@ -70,4 +78,5 @@ export type {
   Price,
   ProductDetailsProps,
   Cart,
+  OrderDetail,
 };

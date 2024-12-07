@@ -1,20 +1,14 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import {
-  FaBoxOpen,
-  FaCalendarAlt,
-  FaTruck,
-  FaInfoCircle,
-} from "react-icons/fa";
 import OrderFilter from "./Components/order_filter";
 import OrderDetailHeader from "./Components/order_detail_header";
-
+import { OrderDetail } from "@globals/globals";
 const OrderHistory = () => {
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState<OrderDetail[]>([]);
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const fetchedOrders = [
+      const fetchedOrders: OrderDetail[] = [
         {
           id: 1,
           date: "2024-11-25",
@@ -36,6 +30,13 @@ const OrderHistory = () => {
           total: 150,
           quantity: 3,
         },
+        {
+          id: 4,
+          date: "2024-11-25",
+          deliveredDate: "2024-11-30",
+          total: 150,
+          quantity: 3,
+        },
       ];
       setOrders(fetchedOrders);
     };
@@ -46,7 +47,7 @@ const OrderHistory = () => {
     <div className="p-6 bg-gray-100 min-h-screen">
       <h2 className="text-2xl font-bold text-gray-800 mb-6">Order History</h2>
       <OrderFilter />
-      {orders.length > 0 ? (
+      {orders && orders.length > 0 ? (
         <div className="overflow-x-auto bg-white shadow-md rounded-lg p-6">
           <table className="table-auto w-full border-collapse border border-gray-200">
             <OrderDetailHeader />
@@ -69,10 +70,10 @@ const OrderHistory = () => {
                     {order.quantity}
                   </td>
                   <td className="border border-gray-200 px-4 py-2 flex gap-2 justify-center">
-                    <button className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition">
+                    <button className="px-4 py-2 bg-primaryBrown text-white rounded-lg shadow hover:bg-primaryHover transition">
                       View
                     </button>
-                    <button className="px-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition">
+                    <button className="px-4 py-2 bg-primaryDark text-white rounded-lg shadow hover:bg-gray-400 transition">
                       Reorder
                     </button>
                   </td>
