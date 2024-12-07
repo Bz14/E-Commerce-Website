@@ -2,8 +2,10 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import heroImage from "@assets/img.png";
+import { useRouter } from "next/navigation";
 
 const HeroSection = () => {
+  const router = useRouter();
   return (
     <div className="relative bg-primaryBrown min-h-screen flex flex-col items-center justify-center md:flex-row">
       <motion.div
@@ -22,6 +24,7 @@ const HeroSection = () => {
           className="px-4 py-2 md:px-6 md:py-3 bg-primaryDark text-white font-semibold rounded-lg shadow-md hover:bg-gray-500 transition duration-300"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
+          onClick={() => router.push("/products")}
         >
           Shop Now
         </motion.button>
