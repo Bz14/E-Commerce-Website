@@ -14,6 +14,7 @@ import Categories from "./Components/home_page/Catagories/catagories";
 import Testimonials from "./Components/Testimonials/testimonials";
 import Newsletter from "./Components/Newsletter/news_letter";
 import ProductOfTheWeek from "./Components/Product/product";
+import HowToUse from "./Components/HowToUse/how_to_use";
 
 function Home() {
   const dispatch: AppDispatch = useDispatch();
@@ -44,6 +45,7 @@ function Home() {
       <Testimonials />
       <Newsletter />
       <ProductOfTheWeek />
+      <HowToUse />
     </PrimeReactProvider>
   );
 }
