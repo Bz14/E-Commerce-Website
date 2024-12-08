@@ -1,5 +1,4 @@
 import { Cart } from "@globals/globals";
-import img1 from "@assets/dress2.jpg";
 import CartItem from "./components/cart_item";
 import CartHeader from "./components/cart_header";
 import CartTitle from "./components/cart_title";
@@ -12,7 +11,7 @@ const carts: Cart[] = [
     price: 100,
     quantity: 1,
     image: {
-      src: img1,
+      src: "../../../public/assets/dress1.jpg",
       alt: "Product 1",
     },
   },
@@ -22,7 +21,7 @@ const carts: Cart[] = [
     price: 200,
     quantity: 2,
     image: {
-      src: img1,
+      src: "../../../public/assets/dress1.jpg",
       alt: "Product 2",
     },
   },

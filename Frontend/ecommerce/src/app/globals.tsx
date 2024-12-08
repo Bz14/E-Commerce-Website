@@ -12,8 +12,14 @@ interface AuthState {
   userProfile: User | null;
 }
 
+interface ProductState {
+  products: Product[];
+  loading: boolean;
+  error: string;
+}
+
 interface ProductGallery {
-  src: StaticImageData;
+  src: string;
   alt: string;
 }
 interface ProductImageGalleryProps {
@@ -30,6 +36,7 @@ interface Price {
 
 interface Product {
   id: string;
+  image: string;
   name: string;
   description: string;
   size: string[];
@@ -88,4 +95,5 @@ export type {
   Cart,
   OrderDetail,
   WishListProduct,
+  ProductState,
 };

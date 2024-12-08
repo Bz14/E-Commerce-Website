@@ -1,7 +1,3 @@
-import img1 from "@assets/shoe/shoe1.png";
-import img2 from "@assets/dress1.jpg";
-import img3 from "@assets/dress2.jpg";
-import img4 from "@assets/dress3.jpg";
 import ProductImageGallery from "./Components/product_gallery";
 import { Product } from "@globals/globals";
 import ProductDetails from "./Components/product_details";
@@ -13,6 +9,7 @@ interface ProductDetailProps {
 }
 
 const product: Product = {
+  image: "../../../../public/assets/dress1.jpg",
   id: "1",
   name: "Dress",
   price: "$100",
@@ -28,10 +25,10 @@ const product: Product = {
   tags: ["Summer", "Casual", "Cotton"],
   colors: ["Red", "Blue", "Green"],
   gallery: [
-    { src: img1, alt: "Dress" },
-    { src: img2, alt: "Dress" },
-    { src: img3, alt: "Dress" },
-    { src: img4, alt: "Dress" },
+    { src: "../../../../public/assets/dress1.jpg", alt: "Dress" },
+    { src: "../../../../public/assets/dress1.jpg", alt: "Dress" },
+    { src: "../../../../public/assets/dress1.jpg", alt: "Dress" },
+    { src: "../../../../public/assets/dress1.jpg", alt: "Dress" },
   ],
 };
 

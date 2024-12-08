@@ -4,13 +4,26 @@ import Featured from "./Components/home_page/Featured/featured";
 import Brands from "./Components/home_page/Brands/brands";
 import { PrimeReactProvider } from "primereact/api";
 import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "@/app/store";
 import { setAccessToken, setUser } from "@/app/store/slices/authSlice";
+import { useEffect } from "react";
+import { fetchFeaturedProducts } from "./store/slices/featuredProductSlice";
+import { RootState } from "@/app/store";
 
-const Home = () => {
+function Home() {
+  const dispatch: AppDispatch = useDispatch();
+
+  const { products, loading, error } = useSelector(
+    (state: RootState) => state.featuredProducts
+  );
   const router = useRouter();
   const { accessToken, profile } = router;
-  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFeaturedProducts());
+  }, [dispatch]);
+
   if (accessToken) {
     dispatch(setAccessToken(accessToken));
   }
@@ -21,10 +34,10 @@ const Home = () => {
   return (
     <PrimeReactProvider>
       <HeroSection />
-      <Featured />
+      <Featured products={products} loading={loading} error={error} />
       <Brands />
     </PrimeReactProvider>
   );
-};
+}
 
 export default Home;
