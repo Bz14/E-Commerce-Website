@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { fetchFeaturedProducts } from "./store/slices/featuredProductSlice";
 import { RootState } from "@/app/store";
 import Categories from "./Components/home_page/Catagories/catagories";
+import Testimonials from "./Components/Testimonials/testimonials";
 
 function Home() {
   const dispatch: AppDispatch = useDispatch();
@@ -38,6 +39,7 @@ function Home() {
       <Featured products={products} loading={loading} error={error} />
       <Brands />
       <Categories />
+      <Testimonials />
     </PrimeReactProvider>
   );
 }
