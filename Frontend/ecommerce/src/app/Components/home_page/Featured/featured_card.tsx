@@ -33,7 +33,7 @@ const FeaturedCard = ({ product }: { product: Product }) => {
 
         <div className="flex justify-center mt-4">
           <button
-            onClick={() => router.push(`/products${product.id}`)}
+            onClick={() => router.push(`/product_detail/${product.id}`)}
             className="px-4 py-2 bg-primaryBrown text-white font-medium rounded-lg hover:bg-primaryHover transition duration-300"
           >
             Check Now

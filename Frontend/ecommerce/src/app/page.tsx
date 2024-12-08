@@ -10,6 +10,7 @@ import { setAccessToken, setUser } from "@/app/store/slices/authSlice";
 import { useEffect } from "react";
 import { fetchFeaturedProducts } from "./store/slices/featuredProductSlice";
 import { RootState } from "@/app/store";
+import Categories from "./Components/home_page/Catagories/catagories";
 
 function Home() {
   const dispatch: AppDispatch = useDispatch();
@@ -36,6 +37,7 @@ function Home() {
       <HeroSection />
       <Featured products={products} loading={loading} error={error} />
       <Brands />
+      <Categories />
     </PrimeReactProvider>
   );
 }
