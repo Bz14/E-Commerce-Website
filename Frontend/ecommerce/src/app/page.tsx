@@ -12,6 +12,8 @@ import { fetchFeaturedProducts } from "./store/slices/featuredProductSlice";
 import { RootState } from "@/app/store";
 import Categories from "./Components/home_page/Catagories/catagories";
 import Testimonials from "./Components/Testimonials/testimonials";
+import Newsletter from "./Components/Newsletter/news_letter";
+import ProductOfTheWeek from "./Components/Product/product";
 
 function Home() {
   const dispatch: AppDispatch = useDispatch();
@@ -40,6 +42,8 @@ function Home() {
       <Brands />
       <Categories />
       <Testimonials />
+      <Newsletter />
+      <ProductOfTheWeek />
     </PrimeReactProvider>
   );
 }
