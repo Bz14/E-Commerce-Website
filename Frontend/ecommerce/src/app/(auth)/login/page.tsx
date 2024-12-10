@@ -10,14 +10,10 @@ import * as yup from "yup";
 import { useEffect } from "react";
 import Spinner from "@/app/Components/UI/spinner";
 import { useRouter } from "next/navigation";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { setAccessToken, setUser } from "@/app/store/slices/authSlice";
-
-type LoginForm = {
-  email: string;
-  password: string;
-};
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "@/app/store/index";
+import { LoginForm } from "@/app/globals";
+import { loginUser } from "@/app/store/slices/authSlice";
 
 const schema = yup.object({
   email: yup
@@ -53,14 +49,13 @@ const Login = () => {
     mode: "all",
     resolver: yupResolver(schema),
   });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const { register, handleSubmit, formState, reset } = form;
   const { errors, isValid, isDirty, isSubmitting, isSubmitSuccessful } =
     formState;
-  const apiUrl = "http://localhost:5000/api/v1"; // process.env.API_URL;
+  // const apiUrl = "http://localhost:5000/api/v1"; // process.env.API_URL;
   const router = useRouter();
-  const dispatch = useDispatch();
+  const { token, user } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -72,33 +67,15 @@ const Login = () => {
   };
 
   const onSubmit = async (data: LoginForm) => {
-    setLoading(true);
-    try {
-      const response = await axios.post(`${apiUrl}/auth/login`, data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const result = response.data;
+    dispatch(loginUser(data));
+  };
 
-      dispatch(setAccessToken(result.accessToken));
-      dispatch(setUser(result.userProfile));
+  useEffect(() => {
+    if (token) {
       reset();
       router.push("/");
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        const errorMessage =
-          error.response?.data?.message ||
-          "An error occurred while logging in.";
-        setError(errorMessage);
-      } else {
-        setError("Something went wrong");
-      }
-      console.log("Error", error);
-    } finally {
-      setLoading(false);
     }
-  };
+  }, [token, user, router, dispatch, form, reset]);
 
   return (
     <div className="min-h-screen flex items-center justify-center text-primaryDark bg-primaryHover">

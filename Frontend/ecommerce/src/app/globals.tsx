@@ -89,6 +89,11 @@ interface WishListProduct {
   image: StaticImageData;
 }
 
+type LoginForm = {
+  email: string;
+  password: string;
+};
+
 export type {
   UserProfile,
   User,
@@ -103,4 +108,5 @@ export type {
   WishListProduct,
   ProductState,
   SignUpForm,
+  LoginForm,
 };
