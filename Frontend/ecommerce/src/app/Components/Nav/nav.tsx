@@ -113,7 +113,9 @@ const NavBar = () => {
         </div>
       </div>
       <div
-        className={`md:hidden ${isOpen ? "block" : "hidden"} text-primaryDark`}
+        className={`md:hidden ${
+          isOpen ? "block" : "hidden"
+        } text-primaryDark gap-3`}
       >
         <Link href="/" className="block py-2 px-4 text-sm hover:bg-gray-200">
           Home
