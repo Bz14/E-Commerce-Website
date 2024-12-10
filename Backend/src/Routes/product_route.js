@@ -7,6 +7,6 @@ const {
 const router = express.Router();
 
 router.get("/product/:id", ProductDetailController);
-route.get("/products/featured", ProductFeaturedController);
+router.get("/products/featured", ProductFeaturedController);
 
 module.exports = router;

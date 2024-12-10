@@ -43,7 +43,6 @@ class AuthService {
         verificationEmail
       );
     } catch (error) {
-      console.log("Error", error);
       this.authRepo.DeleteUser(email);
       throw error;
     }

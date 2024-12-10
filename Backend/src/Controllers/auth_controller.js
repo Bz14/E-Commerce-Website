@@ -22,7 +22,6 @@ const SignupController = async (req, res) => {
     await authService.Signup(name, email, password);
     res.status(201).json({ message: "User created successfully" });
   } catch (err) {
-    console.log(err);
     res.status(400).json({ message: err.message });
   }
 };
