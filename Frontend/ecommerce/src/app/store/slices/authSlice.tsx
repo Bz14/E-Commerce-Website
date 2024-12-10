@@ -1,28 +1,64 @@
-"use client";
-import { createSlice } from "@reduxjs/toolkit";
-import { AuthState } from "@/app/globals";
+import { SignUpForm } from "@/app/globals";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-const initialState: AuthState = {
-  accessToken: null,
-  userProfile: null,
+const apiUrl = "http://localhost:5000/api/v1"; // process.env.API_URL;
+
+export const signupUser = createAsyncThunk(
+  "auth/signup",
+  async (data: SignUpForm, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(`${apiUrl}/auth/signup`, data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return response.data.message;
+    } catch (error: any) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+interface SignupData {
+  success: string | null;
+  loading: boolean;
+  error: string | null;
+}
+
+const initialState: SignupData = {
+  success: null,
+  loading: false,
+  error: null,
 };
 
 const authSlice = createSlice({
   name: "auth",
-  initialState,
+  initialState: initialState,
   reducers: {
-    setAccessToken(state, action) {
-      state.accessToken = action.payload;
+    clearMessage: (state) => {
+      state.success = null;
+      state.error = null;
     },
-    setUser(state, action) {
-      state.userProfile = action.payload;
-    },
-    logout(state) {
-      state.accessToken = null;
-      state.userProfile = null;
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(signupUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.success = null;
+      })
+      .addCase(signupUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = action.payload;
+        state.error = null;
+      })
+      .addCase(signupUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      });
   },
 });
 
-export const { setAccessToken, setUser, logout } = authSlice.actions;
+export const { clearMessage } = authSlice.actions;
 export default authSlice.reducer;

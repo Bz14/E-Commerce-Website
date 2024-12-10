@@ -34,6 +34,12 @@ interface Price {
   prices: string | undefined;
 }
 
+type SignUpForm = {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
 interface Product {
   id: string;
   image: string;
@@ -96,4 +102,5 @@ export type {
   OrderDetail,
   WishListProduct,
   ProductState,
+  SignUpForm,
 };

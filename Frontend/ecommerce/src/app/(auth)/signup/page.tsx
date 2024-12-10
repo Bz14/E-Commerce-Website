@@ -10,15 +10,10 @@ import * as yup from "yup";
 import { useEffect } from "react";
 import Spinner from "@/app/Components/UI/spinner";
 import { useRouter } from "next/navigation";
-
-import axios from "axios";
-
-type SignUpForm = {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
+import { useDispatch, useSelector } from "react-redux";
+import { signupUser, clearMessage } from "@/app/store/slices/authSlice";
+import { RootState, AppDispatch } from "@/app/store/index";
+import { SignUpForm } from "@globals/globals";
 
 const schema = yup.object({
   name: yup.string().required("Full name is required."),
@@ -62,13 +57,16 @@ const SignUp = () => {
     mode: "all",
     resolver: yupResolver(schema),
   });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const { register, handleSubmit, formState, reset } = form;
   const { errors, isValid, isDirty, isSubmitting, isSubmitSuccessful } =
     formState;
   const apiUrl = "http://localhost:5000/api/v1"; // process.env.API_URL;
   const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+
+  const { loading, success, error } = useSelector(
+    (state: RootState) => state.auth
+  );
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -83,30 +81,17 @@ const SignUp = () => {
     window.location.href = `${apiUrl}/auth/google`;
   };
   const onSubmit = async (data: SignUpForm) => {
-    setLoading(true);
-    try {
-      const response = await axios.post(`${apiUrl}/auth/signup`, data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      console.log(response);
-      reset();
-      router.push(`/verify?email=${encodeURIComponent(data.email)}`);
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        const errorMessage =
-          error.response?.data?.message ||
-          "An error occurred while creating your account.";
-        setError(errorMessage);
-      } else {
-        setError("Something went wrong");
-      }
-      console.log("Error", error);
-    } finally {
-      setLoading(false);
-    }
+    dispatch(signupUser(data));
   };
+  useEffect(() => {
+    if (success) {
+      reset();
+      router.push(
+        `/verify?email=${encodeURIComponent(form.getValues("email"))}`
+      );
+      dispatch(clearMessage());
+    }
+  }, [success, router, dispatch, form, reset]);
 
   return (
     <div className="min-h-screen flex items-center justify-center text-primaryDark bg-primaryHover">
