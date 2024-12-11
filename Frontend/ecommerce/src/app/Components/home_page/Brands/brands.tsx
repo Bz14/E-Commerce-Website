@@ -43,7 +43,7 @@ const Brands = () => {
   const brandTemplate = (brand: { name: string; logo: string }) => {
     return (
       <div className="p-4">
-        <div className="bg-white p-6 rounded-lg shadow-lg flex items-center justify-center">
+        <div className="bg-primaryBrown p-6 rounded-lg shadow-lg flex items-center justify-center">
           <Image
             src={brand.logo}
             alt={brand.name}
@@ -57,7 +57,7 @@ const Brands = () => {
   };
 
   return (
-    <div className="py-8 bg-primaryBrown">
+    <div className="py-8 bg-white">
       <h2 className="text-3xl font-bold text-center mb-8 text-white">
         Popular Brands
       </h2>

@@ -14,7 +14,7 @@ type Product = {
 const ProductCard = ({ id, img, name, price, rating, tags }: Product) => {
   return (
     <div
-      className="relative bg-cover bg-center shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105"
+      className="relative bg-cover bg-center shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 bg-transparent"
       style={{
         backgroundImage: `url(${img.src})`,
         backgroundSize: "cover",

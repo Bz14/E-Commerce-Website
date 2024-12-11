@@ -54,7 +54,9 @@ const Login = () => {
     formState;
   // const apiUrl = "http://localhost:5000/api/v1"; // process.env.API_URL;
   const router = useRouter();
-  const { token, user } = useSelector((state: RootState) => state.auth);
+  const { token, user, loading, error } = useSelector(
+    (state: RootState) => state.auth
+  );
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {

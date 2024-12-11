@@ -11,8 +11,7 @@ import { RootState } from "@/app/store/index";
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const path = usePathname();
-  const user = useSelector((state: RootState) => state.auth.userProfile);
-  const token = useSelector((state: RootState) => state.auth.accessToken);
+  const { user, token } = useSelector((state: RootState) => state.auth);
   console.log("The user", user, token);
 
   return (
