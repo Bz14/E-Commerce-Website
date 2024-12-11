@@ -20,6 +20,19 @@ class ProductService {
       throw error;
     }
   }
+
+  async GetProducts(category, page, limit) {
+    try {
+      const { products, pagination } = await this.productRepo.GetProducts(
+        category,
+        page,
+        limit
+      );
+      return { products, pagination };
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 module.exports = ProductService;

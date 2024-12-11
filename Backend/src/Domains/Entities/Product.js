@@ -19,7 +19,8 @@ class Product {
     tags,
     colors,
     gallery,
-    featured
+    featured,
+    category
   ) {
     this.id = id;
     this.name = new Name(name);
@@ -35,6 +36,7 @@ class Product {
     this.colors = colors;
     this.gallery = gallery;
     this.featured = featured;
+    this.category = category;
   }
 }
 
