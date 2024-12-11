@@ -23,7 +23,11 @@ interface ProductState {
   categories: {
     [key: string]: {
       items: object[];
-      pagination: object;
+      pagination: {
+        currentPage: number;
+        totalPages: number;
+        total: number;
+      };
     };
   };
   loading: boolean;
@@ -34,7 +38,11 @@ const initialState: ProductState = {
   categories: {
     clothes: {
       items: [],
-      pagination: {},
+      pagination: {
+        currentPage: 1,
+        totalPages: 1,
+        total: 0,
+      },
     },
   },
   loading: false,
@@ -44,7 +52,14 @@ const initialState: ProductState = {
 const productSlice = createSlice({
   name: "products",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    setPage(state, action) {
+      const { category, page } = action.payload;
+      if (state.categories[category]) {
+        state.categories[category].pagination.currentPage = page;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
@@ -65,3 +80,4 @@ const productSlice = createSlice({
 });
 
 export default productSlice.reducer;
+export const { setPage } = productSlice.actions;

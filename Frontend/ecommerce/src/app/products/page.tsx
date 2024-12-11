@@ -1,17 +1,26 @@
 "use client";
-import React from "react";
 import Hero from "./Components/Hero";
 import ProductList from "./Components/product_list";
 import SearchBar from "../Components/UI/searchbar";
 import { recommended, products, titles } from "./Components/sampledata";
 import Filter from "../Components/UI/filter";
-import { useSelector } from "react-redux";
-import { AuthState } from "../globals";
-
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "@/app/store/index";
+import { useEffect } from "react";
+import { fetchProducts } from "../store/slices/productSlice";
 const ProductPage = () => {
-  const accessToken = useSelector((state: AuthState) => state.accessToken);
-  const profile = useSelector((state: AuthState) => state.userProfile);
-  console.log(accessToken, profile);
+  const dispatch = useDispatch<AppDispatch>();
+  const { categories, loading, error } = useSelector(
+    (state: RootState) => state.products
+  );
+
+  useEffect(() => {
+    titles.forEach((title) => {
+      if (!categories[title]) {
+        dispatch(fetchProducts({ category: title }));
+      }
+    });
+  }, [dispatch, categories]);
   return (
     <div className="min-h-screen bg-gray-100">
       <Hero />
@@ -30,6 +39,8 @@ const ProductPage = () => {
           </div>
         </div>
       </div>
+      {/* {loading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>} */}
       {products.map((product, index) => (
         <ProductList key={index} products={product} title={titles[index]} />
       ))}

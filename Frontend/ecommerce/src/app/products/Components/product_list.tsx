@@ -2,6 +2,9 @@
 import ProductCard from "./productCard";
 import { useState } from "react";
 import Pagination from "./pagination";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "@/app/store/index";
+import { fetchProducts, setPage } from "@/app/store/slices/productSlice";
 
 type Product = {
   id: number;
@@ -18,6 +21,12 @@ type ProductListProps = {
 };
 
 const ProductList = ({ products, title }: ProductListProps) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { categories } = useSelector((state: RootState) => state.products);
+
+  const current = categories[title]?.pagination.currentPage || 1;
+  const total = categories[title]?.pagination.totalPages || 1;
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
 
@@ -29,10 +38,16 @@ const ProductList = ({ products, title }: ProductListProps) => {
   const totalPages = Math.ceil(products.length / itemsPerPage);
 
   const next = () => {
+    // const newPage = Math.min(currentPage + 1, total);
+    // dispatch(setPage({ category: title, page: newPage }));
+    // dispatch(fetchProducts({ category: title, page: newPage }));
     setCurrentPage((currentPage) => Math.min(currentPage + 1, totalPages));
   };
 
   const prev = () => {
+    // const newPage = Math.max(currentPage - 1, 1);
+    // dispatch(setPage({ category: title, page: newPage }));
+    // dispatch(fetchProducts({ category: title, page: newPage }));
     setCurrentPage((currentPage) => Math.max(currentPage - 1, 1));
   };
 
