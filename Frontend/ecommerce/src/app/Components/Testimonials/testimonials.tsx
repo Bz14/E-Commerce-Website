@@ -14,11 +14,17 @@ const Testimonials = () => {
       rating: 4,
       photo: img,
     },
+    {
+      name: "John Smith",
+      feedback: "Great customer service and quality.",
+      rating: 4,
+      photo: img,
+    },
   ];
 
   return (
     <section className="py-16 bg-gradient-to-r bg-white text-primaryDark">
-      <h2 className="text-4xl font-bold text-center mb-10">
+      <h2 className="text-xl md:text-4xl font-bold text-center mb-10">
         What Our Customers Say
       </h2>
       <div className="flex flex-wrap justify-center gap-8">
@@ -40,7 +46,7 @@ const Testimonials = () => {
                 </p>
               </div>
             </div>
-            <p className="italic">"{testimony.feedback}"</p>
+            <p className="italic">&ldquo;{testimony.feedback}&rdquo;</p>
           </div>
         ))}
       </div>
