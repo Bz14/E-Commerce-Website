@@ -1,5 +1,6 @@
 const ProductModel = require("../Models/product");
 const Pagination = require("../Domains/Entities/Pagination");
+const Product = require("../Domains/Entities/Product");
 
 class ProductRepository {
   constructor() {}
@@ -43,6 +44,15 @@ class ProductRepository {
       };
 
       return { products, pagination };
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async CreateProduct(product) {
+    try {
+      const newProduct = new ProductModel(product);
+      await newProduct.save();
     } catch (error) {
       throw error;
     }

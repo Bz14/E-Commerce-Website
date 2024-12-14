@@ -22,6 +22,8 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(express.static(path.join(__dirname, "public")));
+
 connectToDb();
 
 router.use("/api/v1/auth", authRoute);

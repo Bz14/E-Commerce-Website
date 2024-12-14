@@ -33,6 +33,14 @@ class ProductService {
       throw error;
     }
   }
+
+  async CreateProduct(product) {
+    try {
+      await this.productRepo.CreateProduct(product);
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 module.exports = ProductService;

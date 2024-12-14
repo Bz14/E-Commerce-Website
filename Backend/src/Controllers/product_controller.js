@@ -41,6 +41,48 @@ class ProductController {
       res.status(400).json({ message: err.message });
     }
   };
+
+  CreateProduct = async (req, res) => {
+    const {
+      name,
+      price,
+      description,
+      category,
+      image,
+      size,
+      oldPrice,
+      discount,
+      reviews,
+      rating,
+      tags,
+      gallery,
+      colors,
+      quantity,
+    } = req.body;
+
+    try {
+      await productService.CreateProduct(
+        name,
+        price,
+        description,
+        category,
+        image,
+        size,
+        oldPrice,
+        discount,
+        reviews,
+        rating,
+        tags,
+        gallery,
+        colors,
+        quantity
+      );
+      res.status(201).json({ message: "Product created successfully" });
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({ message: err.message });
+    }
+  };
 }
 
 module.exports = ProductController;
