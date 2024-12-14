@@ -6,23 +6,21 @@ const Size = require("../Value-objects/size");
 
 class Product {
   constructor(
-    id,
     name,
     price,
     description,
+    category,
+    image,
+    size,
     oldPrice,
     discount,
-    rating,
-    quantity,
     reviews,
-    size,
+    rating,
     tags,
-    colors,
     gallery,
-    featured,
-    category
+    colors,
+    quantity
   ) {
-    this.id = id;
     this.name = new Name(name);
     this.price = new Price(price);
     this.description = description;

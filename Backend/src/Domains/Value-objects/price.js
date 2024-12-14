@@ -1,12 +1,12 @@
 class Price {
   constructor(price) {
-    if (price === undefined) {
-      throw new Error("Price is required");
-    }
-    const validateError = this.validatePrice(price);
-    if (validateError) {
-      throw new Error(validateError);
-    }
+    // if (!price) {
+    //   throw new Error("Price is required");
+    // }
+    // const validateError = this.validatePrice(price);
+    // if (validateError) {
+    //   throw new Error(validateError);
+    // }
     this.price = price;
   }
 

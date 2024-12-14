@@ -1,9 +1,9 @@
 class Rating {
   constructor(value) {
-    const validateError = this.validateRating(value);
-    if (validateError) {
-      throw new Error(validateError);
-    }
+    // const validateError = this.validateRating(value);
+    // if (validateError) {
+    //   throw new Error(validateError);
+    // }
     this.value = value;
   }
 

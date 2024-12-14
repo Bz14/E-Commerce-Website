@@ -7,7 +7,7 @@ class Name {
     if (validateError) {
       throw new Error(validateError);
     }
-    this.name = name.trim();
+    this.name = name;
   }
 
   validate(name) {

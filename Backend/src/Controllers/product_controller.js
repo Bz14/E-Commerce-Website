@@ -3,7 +3,7 @@ const ProductService = require("../Services/product_service");
 
 const productRepo = new ProductRepository();
 const productService = new ProductService(productRepo);
-
+const Product = require("../Domains/Entities/Product");
 class ProductController {
   FetchProductDetail = async (req, res) => {
     const productId = req.params.id;
@@ -43,40 +43,10 @@ class ProductController {
   };
 
   CreateProduct = async (req, res) => {
-    const {
-      name,
-      price,
-      description,
-      category,
-      image,
-      size,
-      oldPrice,
-      discount,
-      reviews,
-      rating,
-      tags,
-      gallery,
-      colors,
-      quantity,
-    } = req.body;
-
+    console.log(req.body);
     try {
-      await productService.CreateProduct(
-        name,
-        price,
-        description,
-        category,
-        image,
-        size,
-        oldPrice,
-        discount,
-        reviews,
-        rating,
-        tags,
-        gallery,
-        colors,
-        quantity
-      );
+      const user = new Product(req.body);
+      await productService.CreateProduct(user);
       res.status(201).json({ message: "Product created successfully" });
     } catch (err) {
       console.log(err);
