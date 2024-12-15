@@ -6,6 +6,7 @@ import shoe5 from "@assets/shoe/shoe7.png";
 import shoe6 from "@assets/shoe/shoe6.png";
 import shoe7 from "@assets/shoe/shoe1.png";
 import shoe8 from "@assets/shoe/shoe3.png";
+
 import jacket1 from "@assets/dress/jacket1.png";
 import shirt1 from "@assets/dress/shirt1.png";
 import dress3 from "@assets/dress/dress3.png";
