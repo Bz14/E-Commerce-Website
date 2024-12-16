@@ -52,7 +52,6 @@ const Login = () => {
   const { register, handleSubmit, formState, reset } = form;
   const { errors, isValid, isDirty, isSubmitting, isSubmitSuccessful } =
     formState;
-  // const apiUrl = "http://localhost:5000/api/v1"; // process.env.API_URL;
   const router = useRouter();
   const { token, user, loading, error } = useSelector(
     (state: RootState) => state.auth
